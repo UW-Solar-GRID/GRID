@@ -1,3 +1,5 @@
 CSE Project
 
-We will need to add the project details here.
+SolarSizer takes in a load profile, latitude, and logitude and outputs a solar array capable of meeting the load profile.
+
+![Example diagram](doc/SolarSizerFlowChart.png)
