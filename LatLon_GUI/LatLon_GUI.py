@@ -1,13 +1,23 @@
+"""
+
+Creates GUI with functionality to input latitude and longitude.
+
+These user inputted values are run through a FakeSAM model that just
+multiplies them by two and then returns them as outputs in the GUI.
+
+"""
+
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 
+#import datetime
+
 import dash
-from dash.dependencies import Input, Output, State
+from dash.dependencies import Input, Output
 from dash import dcc
 from dash import html
-import plotly.express as px
+#import plotly.express as px
 import pandas as pd
-import datetime
 
 import FakeSAM
 
@@ -36,23 +46,23 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     html.Br(),
 
     html.Label('Enter latitude and longitude below:', style={'color': colors['text']
-        
+
     }),
-    
+
     html.Br(),
-    
+
     html.Br(),
-    
+
     html.Label('Latitude (in degrees):', style={'color': colors['text']
-        
+
     }),
-    
+
     dcc.Input(id='lat', type='number'),
-    
+
     html.Br(),
-    
+
     html.Label('Longitude (in degrees):', style={'color': colors['text']
-        
+
     }),
 
     dcc.Input(id='lon', type='number'),
@@ -60,11 +70,11 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     html.Br(),
 
     html.Br(),
-    
+
     html.Div(id="output"),
 
 #    html.Label('Upload a load profile below:', style={'color': colors['text']
-#        
+#
 #    }),
 #
 #
@@ -119,24 +129,15 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
               Input('lon', 'value'))
 
 def update_output(lat, lon):
-    
-    if lat != None and lon != None:
+    """
+    Updates output with input values run through FakeSAM model.
+    """
+
+    if lat is not None and lon is not None:
         nlat, nlon = FakeSAM.twice_lat_lon(lat, lon)
         return u'Lat: {}, Lon: {}'.format(nlat, nlon)
     else:
         pass
-
-              
-              
-              
-        
-        
-        
-        
-              
-              
-              
-              
-              
+                
 if __name__ == '__main__':
     app.run_server(debug=True)
