@@ -40,13 +40,12 @@ app.layout = html.Div([
 def parse_contents(contents, filename, date):
     content_type, content_string = contents.split(',')
 
-    lst = []
+    lines = []
     decoded = base64.b64decode(content_string)
     try:
         if 'txt' in filename:
             df = pd.read_csv(
                 io.StringIO(decoded.decode('utf-8')))
-            lines = []
             for line in contents:
                 lines.append(line)
         elif 'csv' in filename:
