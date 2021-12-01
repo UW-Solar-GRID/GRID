@@ -19,7 +19,11 @@ from dash import html
 #import plotly.express as px
 import pandas as pd
 
-import FakeSAM
+import urllib.request
+import os
+
+import fake_SAM
+from SolarArrayModel.pull_irradiance.pull_irradiance import create_irradiance_file
 
 app = dash.Dash(__name__)
 
@@ -134,7 +138,8 @@ def update_output(lat, lon):
     """
 
     if lat is not None and lon is not None:
-        nlat, nlon = FakeSAM.twice_lat_lon(lat, lon)
+        create_irradiance_file(lat,lon,2000)
+        nlat, nlon = fake_SAM.twice_lat_lon(lat, lon)
         return u'Lat: {}, Lon: {}'.format(nlat, nlon)
     else:
         pass
