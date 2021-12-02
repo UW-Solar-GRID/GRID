@@ -24,7 +24,7 @@ import os
 
 from old import fake_SAM
 from utils import parse_load_profile as plp
-from utils import create_irradiance_file
+from utils import pull_irradiance
 
 app = dash.Dash(__name__)
 
@@ -160,7 +160,7 @@ def update_output(lat, lon):
     """
 
     if lat is not None and lon is not None:
-        create_irradiance_file(lat,lon,2000)
+        pull_irradiance.create_irradiance_file(lat,lon,2000)
         nlat, nlon = fake_SAM.twice_lat_lon(lat, lon)
         return u'Lat: {}, Lon: {}'.format(nlat, nlon)
     else:
