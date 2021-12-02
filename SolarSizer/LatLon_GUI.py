@@ -13,7 +13,7 @@ multiplies them by two and then returns them as outputs in the GUI.
 #import datetime
 
 import dash
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 from dash import dcc
 from dash import html
 #import plotly.express as px
@@ -22,6 +22,7 @@ import pandas as pd
 import urllib.request
 import os
 
+import parse_load_profile as plp
 import fake_SAM
 from SolarArrayModel.pull_irradiance.pull_irradiance import create_irradiance_file
 
@@ -76,6 +77,27 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
     html.Br(),
 
     html.Div(id="output"),
+    
+    dcc.Upload(
+        id='upload-data',
+        children=html.Div([
+            'Drag and Drop or ',
+            html.A('Select Files')
+        ]),
+        style={
+            'width': '100%',
+            'height': '60px',
+            'lineHeight': '60px',
+            'borderWidth': '1px',
+            'borderStyle': 'dashed',
+            'borderRadius': '5px',
+            'textAlign': 'center',
+            'margin': '10px'
+        },
+        # Allow multiple files to be uploaded
+        multiple=True
+    ),
+    html.Div(id='output-data-upload'),
 
 #    html.Label('Upload a load profile below:', style={'color': colors['text']
 #
@@ -143,6 +165,18 @@ def update_output(lat, lon):
         return u'Lat: {}, Lon: {}'.format(nlat, nlon)
     else:
         pass
+
+
+@app.callback(Output('output-data-upload', 'children'),
+              Input('upload-data', 'contents'),
+              State('upload-data', 'filename'),
+              State('upload-data', 'last_modified'))
+def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
+    if list_of_contents is not None:
+        children = [
+            plp.parse_contents(c, n, d) for c, n, d in
+            zip(list_of_contents, list_of_names, list_of_dates)]
+        return children
                 
 if __name__ == '__main__':
     app.run_server(debug=True)
