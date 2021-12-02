@@ -22,9 +22,9 @@ import pandas as pd
 import urllib.request
 import os
 
-import parse_load_profile as plp
-import fake_SAM
-from SolarArrayModel.pull_irradiance.pull_irradiance import create_irradiance_file
+from old import fake_SAM
+from utils import parse_load_profile as plp
+from utils import create_irradiance_file
 
 app = dash.Dash(__name__)
 
