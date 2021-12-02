@@ -23,8 +23,10 @@ import urllib.request
 import os
 
 from old import fake_SAM
+from PySAM import pysam_model
 from utils import parse_load_profile as plp
 from utils import pull_irradiance
+from utils import convert_load_profile
 
 app = dash.Dash(__name__)
 
@@ -161,8 +163,8 @@ def update_output(lat, lon):
 
     if lat is not None and lon is not None:
         pull_irradiance.create_irradiance_file(lat,lon,2000)
-        nlat, nlon = fake_SAM.twice_lat_lon(lat, lon)
-        return u'Lat: {}, Lon: {}'.format(nlat, nlon)
+        model_output = pysam_model.pysam_model
+        return u'{}'.format(model_output)
     else:
         pass
 
@@ -176,6 +178,7 @@ def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
         children = [
             plp.parse_contents(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
+        
         return children
                 
 if __name__ == '__main__':
