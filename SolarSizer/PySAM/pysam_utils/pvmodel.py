@@ -46,6 +46,8 @@ import urllib.request
 
 def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters=4):
     
+    data_path = os.path.abspath("../data")
+    
     # initialize model with defaults
     pvmodel = pv.default('PVBatteryResidential')
     
