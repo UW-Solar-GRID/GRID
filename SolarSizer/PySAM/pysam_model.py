@@ -9,14 +9,6 @@ import matplotlib.pyplot as plt
 import urllib.request
 from pysam_utils import pvmodel
 
-
-## Load Profile
-
-# Getting our load profile
-data_path = os.path.abspath("../data")
-
-our_load_profile = np.loadtxt(os.path.join(data_path, "Max_load_profile_for_year.txt"), skiprows=1)
-
 ## Running multiple scenarios
 
 # Now, we will evaluate multiple scenarios - we will look at a range of modules numbers and a range of strings to find minimum system requirements that satisfy maximum uptime
