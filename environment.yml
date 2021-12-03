@@ -7,7 +7,7 @@ channels:
   - conda-forge
 
 dependencies:
-  - dash
+  - dash=2.0
   - matplotlib
   - nrel-pysam
   - numpy
