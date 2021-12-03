@@ -7,7 +7,7 @@ import pandas as pd
 import PySAM.Pvsamv1 as pv
 import matplotlib.pyplot as plt
 import urllib.request
-from pysam_utils import pvmodel
+from pysam.pysam_utils import pvmodel
 
 def pysam_model():
 

@@ -23,7 +23,7 @@ import urllib.request
 import os
 
 from old import fake_SAM
-from PySAM import pysam_model
+from pysam import pysam_model
 from utils import parse_load_profile as plp
 from utils import pull_irradiance
 from utils import convert_load_profile
@@ -175,11 +175,14 @@ def update_output(lat, lon):
               State('upload-data', 'last_modified'))
 def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
     if list_of_contents is not None:
-        children = [
-            plp.parse_contents(c, n, d) for c, n, d in
+#        children = [
+#            plp.parse_contents(c, n, d) for c, n, d in
+#            zip(list_of_contents, list_of_names, list_of_dates)]
+        
+        load_profile_df = [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
         
-        return children
+#        return children
                 
 if __name__ == '__main__':
     app.run_server(debug=True)
