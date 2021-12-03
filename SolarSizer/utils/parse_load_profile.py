@@ -2,11 +2,11 @@ import base64
 import datetime
 import io
 
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc
+from dash import html
 from decimal import *
 import pandas as pd
-import dash_table
+from dash import dash_table
 
 def parse_contents(contents, filename, date):
     content_type, content_string = contents.split(',')
