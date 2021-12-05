@@ -35,7 +35,8 @@ def pysam_model():
                 pvmodels.append(z) 
                 
     if len(pvmodels) == 0:
-    #error for system cant match load profile 
+    #error for system cant match load profile
+        pass
     
     uptime_percent = []
 

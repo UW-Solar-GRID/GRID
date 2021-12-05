@@ -38,13 +38,14 @@ def create_load_txt(contents, filename, date):
     
     # get rid of nans and get values
     load_row_day = load_row_day.dropna()
-    load_row_day = np.asarray(load_row_day.values)
+    load_row_day = load_row_day.values
+    load_row_day_arr = load_row_day.to_numpy()
     
     # drop peak and total load
-    load_row_day = load_row_day[1:-1]
+    load_row_day_arr = load_row_day_arr[1:-1]
     
     # assuming constant load for each day, create load profile for year
-    load_row_year = [load_row_day]*365
+    load_row_year = np.array([load_row_day_arr]*365)
     
     np.savetxt('data/load_profile_example.txt', load_row_year)
 
