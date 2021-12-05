@@ -45,6 +45,7 @@ def create_load_txt(contents, filename, date):
     
     # assuming constant load for each day, create load profile for year
     load_row_year = np.array([load_row_day]*365)
+    load_row_year = np.reshape(load_row_year, (load_row_year.shape[0]*365))
     
     np.savetxt('data/load_profile_example.txt', load_row_year)
 
