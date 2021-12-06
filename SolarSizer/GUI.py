@@ -14,8 +14,7 @@ multiplies them by two and then returns them as outputs in the GUI.
 
 import dash
 from dash.dependencies import Input, Output, State
-from dash import dcc
-from dash import html
+from dash import callback_context, dcc, html
 #import plotly.express as px
 import pandas as pd
 
@@ -27,6 +26,10 @@ from pysam import pysam_model
 from utils import parse_load_profile as plp
 from utils import pull_irradiance
 from utils import convert_load_profile
+
+global_lat = None
+global_lon = None
+global_list_of_contents = None
 
 app = dash.Dash(__name__)
 
@@ -100,6 +103,10 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
         multiple=True
     ),
     html.Div(id='output-data-upload'),
+    
+    html.Button('Button 1', id='btn-nclicks-1', n_clicks=0),
+
+    html.Div(id='container-button-timestamp')
 
 #    html.Label('Upload a load profile below:', style={'color': colors['text']
 #
@@ -162,9 +169,10 @@ def update_output(lat, lon):
     """
 
     if lat is not None and lon is not None:
-        pull_irradiance.create_irradiance_file(lat,lon,2000)
-        model_output = pysam_model.pysam_model
-        return u'{}'.format(model_output)
+        global_lat = lat
+        global_lon = lon
+        #pull_irradiance.create_irradiance_file(lat,lon,2000)
+
     else:
         pass
 
@@ -175,14 +183,32 @@ def update_output(lat, lon):
               State('upload-data', 'last_modified'))
 def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
     if list_of_contents is not None:
+        
+        global_list_of_contents = list_of_contents
 #        children = [
 #            plp.parse_contents(c, n, d) for c, n, d in
 #            zip(list_of_contents, list_of_names, list_of_dates)]
         
-        load_profile_df = [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
+        [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
         
 #        return children
+
+
+@app.callback(
+    Output('container-button-timestamp', 'children'),
+    Input('btn-nclicks-1', 'n_clicks')
+)
+def displayClick(btn1):
+    changed_id = [p['prop_id'] for p in callback_context.triggered][0]
+    if 'btn-nclicks-1' in changed_id:
+        print('button clicked')
+        msg = 'Button 1 was most recently clicked'
+        model_output = pysam_model.pysam_model()
+        print(model_output)
+    else:
+        msg = 'None of the buttons have been clicked yet'
+    return html.Div(msg)
                 
 if __name__ == '__main__':
     app.run_server(debug=True)

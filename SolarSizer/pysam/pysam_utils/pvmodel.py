@@ -46,7 +46,7 @@ import urllib.request
 
 def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters=4):
     
-    data_path = os.path.abspath("../data")
+    data_path = os.path.abspath("../SolarSizer/data")
     
     # initialize model with defaults
     pvmodel = pv.default('PVBatteryResidential')
@@ -54,7 +54,14 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     # sepcify solar resource file for the location
     pvmodel.SolarResource.solar_resource_file = os.path.join(data_path, "irradiance.csv")
     # load profile (defined above)
+    
+    print('found irradiance.csv')
+    print(os.path.join(data_path, "irradiance.csv"))
+    
     our_load_profile = np.loadtxt(os.path.join(data_path, "user_load_profile.txt"), skiprows=1)
+    
+    print('found user_load_profile.txt')
+    print(os.path.join(data_path, "user_load_profile.txt"))
     
     pvmodel.Load.load = tuple(our_load_profile)
     

@@ -10,6 +10,8 @@ import urllib.request
 from pysam.pysam_utils import pvmodel
 
 def pysam_model():
+    
+    print('running')
 
     ## Running single scenario to get an estimate of the array size 
     pv_guess = pvmodel.execute_pvmodel(2, 1, n_inverters=1)
@@ -30,7 +32,7 @@ def pysam_model():
     for m in range(2,8): # m is no of modules
         for n in range(1,25): # n is no of strings        
             if m*n >=panel_number_estimate:           
-                z = execute_pvmodel(m,n,m)
+                z = pvmodel.execute_pvmodel(m,n,m)
                 pvmodels_param.append([m, n, n])
                 pvmodels.append(z) 
                 
@@ -55,4 +57,4 @@ def pysam_model():
 
     df_system_array = pd.DataFrame(system_analysis,columns = ['Panels in Strings','Strings','Inverters','Uptime_Percent'])
     df_uptime_met = df_system_array[df_system_array.Uptime_Percent>0.95] 
-    return 'df_uptime_met?'
+    return df_system_array
