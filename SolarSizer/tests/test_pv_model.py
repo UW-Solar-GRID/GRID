@@ -5,7 +5,7 @@ Module to test the pv model
 import numpy as np
 import unittest
 
-from pysam_utils import pvmodel
+from pysam.pysam_utils import pvmodel
 
 
 class TestPVModel(unittest.TestCase):
