@@ -4,10 +4,10 @@ Module to test the pv model
 
 import numpy as np
 import unittest
+import sys
+#from pysam.pysam_utils import pvmodel
 
-from pysam.pysam_utils import pvmodel
-
-
+print(sys.path)
 class TestPVModel(unittest.TestCase):
 
     def test_smoke(self):
