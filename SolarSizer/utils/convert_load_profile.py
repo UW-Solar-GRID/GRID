@@ -45,8 +45,11 @@ def create_load_txt(contents, filename, date):
     
     # assuming constant load for each day, create load profile for year
     load_row_year = np.array([load_row_day]*365)
-    load_row_year = np.asarray(load_row_year)
+    load_row_year = load_row_year.astype(dtype='float')
+    load_row_year = np.reshape(load_row_year, (365*24))
+
+    load_row_year_kw = load_row_year/1000 # converts from watts to kW
     
-    np.savetxt('data/load_profile_example.txt', load_row_year)
+    np.savetxt('data/load_profile_example.txt', load_row_year_kw, delimiter=' ')
 
     return load_row_year
