@@ -5,7 +5,9 @@ Module to test the pv model
 import numpy as np
 import unittest
 import sys
-#from pysam.pysam_utils import pvmodel
+sys.path.insert(0,"/Users/cassidyquigley/desktop/solarsizer/solarsizer/pysam")
+                
+from pysam.pysam_utils import pvmodel
 
 print(sys.path)
 class TestPVModel(unittest.TestCase):
