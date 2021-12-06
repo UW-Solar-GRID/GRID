@@ -53,17 +53,28 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     
     # sepcify solar resource file for the location
     pvmodel.SolarResource.solar_resource_file = os.path.join(data_path, "irradiance.csv")
-    # load profile (defined above)
     
     print('found irradiance.csv')
     print(os.path.join(data_path, "irradiance.csv"))
     
-    our_load_profile = np.loadtxt(os.path.join(data_path, "user_load_profile.txt"), skiprows=1)
+    # try user load profile, if it does not work use default load profile 
+    try:
+        our_load_profile = np.loadtxt(os.path.join(data_path, "user_load_profile.txt"), skiprows=1)
+        
+        print('user load profile loaded')
+        print(os.path.join(data_path, "user_load_profile.txt"))
     
-    print('found user_load_profile.txt')
-    print(os.path.join(data_path, "user_load_profile.txt"))
+    except:
+        our_load_profile = np.loadtxt(os.path.join(data_path, "Max_load_profile_for_year.txt"), skiprows=1)
+        
+        print('user load profile did not work. Using default load profile')
+        print(os.path.join(data_path, "Max_load_profile_for_year.txt"))
+    
+
     
     pvmodel.Load.load = tuple(our_load_profile)
+    
+    print('loaded load profile')
     
     # select module and inverter from database
     pvmodel.Module.module_model = 1 # set it to CEC model
@@ -78,9 +89,13 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     ## Min number of modules in a string
     min_modules_in_string = pvmodel.Inverter.mppt_low_inverter/pvmodel.CECPerformanceModelWithModuleDatabase.cec_v_oc_ref
     
+    print('set some parameters and got min and max modules')
+    
     # modules per string specified must be within (min, max) modules required
     assert number_of_modules_per_string > min_modules_in_string
     assert number_of_modules_per_string < max_modules_in_string
+    
+    print('min and max modules check passsed')
     
     # System Design
     pvmodel.SystemDesign.inverter_count = n_inverters
@@ -108,9 +123,13 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     pvmodel.SystemDesign.subarray4_mppt_input = 1
     pvmodel.SystemDesign.subarray4_track_mode = 0 # fixed tracking
     
+    print('something System Design')
+    
     # Total Capacity of the system
     mod_power_rating = pvmodel.CECPerformanceModelWithModuleDatabase.cec_v_mp_ref * pvmodel.CECPerformanceModelWithModuleDatabase.cec_i_mp_ref
     pvmodel.SystemDesign.system_capacity = mod_power_rating * 4 * number_of_modules_per_string * number_of_strings
+    
+    print('something Total Capacity of the system')
     
     # Battery system design - charge/discharge
     pvmodel.BatterySystem.batt_current_charge_max = 24
@@ -121,6 +140,8 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
 
     pvmodel.BatterySystem.batt_power_charge_max_kwdc = 12
     pvmodel.BatterySystem.batt_power_discharge_max_kwdc= 12
+    
+    print('something Battery system design')
 
     # MUST ENABLE Battery storage!!
     pvmodel.BatterySystem.en_batt = 1
@@ -139,7 +160,11 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     pvmodel.BatteryDispatch.dispatch_manual_discharge = (1, 1, 1, 1, 0, 0)
     pvmodel.BatteryDispatch.dispatch_manual_percent_discharge = (25, 25, 25, 75)
     
+    print('about to execute model')
+    
     # Finally, run the model!
     pvmodel.execute()
+    
+    print('done executing the model')
     
     return pvmodel

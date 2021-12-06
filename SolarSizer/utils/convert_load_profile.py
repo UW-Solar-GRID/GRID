@@ -50,6 +50,8 @@ def create_load_txt(contents, filename, date):
 
     load_row_year_kw = load_row_year/1000 # converts from watts to kW
     
+    print(load_row_year_kw.shape)
+    
     np.savetxt('data/user_load_profile.txt', load_row_year_kw, delimiter=' ')
 
     return load_row_year
