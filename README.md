@@ -4,7 +4,7 @@ Created by: Cassidy Quigley, Clayton Sasaki, Lindsey Taylor, Ning Wang
 
 ## Objective
 
-The main objective of SolarSizer is to assist in the planning of residential solar projects by creating a user friendly dashboard that takes in a location and load profile and returns an equipment list and cost estimate of a solar array capable of meeting the load profile.
+The main objective of SolarSizer is to assist in the planning of small off-grid solar projects by creating a user friendly dashboard that takes in a location and load profile and returns an equipment list and cost estimate of a solar array capable of meeting the load profile.
 
 ## Structure
 
@@ -20,4 +20,4 @@ The interface will be created when you run the GUI file. To do so, enter `python
 
 ## Acknowledgements
 
-This python package has been created for CSE 583 under the guidence of Professor David Beck and Anant Mittal from the University of Washington.
+This python package has been created for CSE 583 under the guidence of Professor David Beck and Anant Mittal from the University of Washington. This package also uses modeling code developed by [GRID](https://github.com/UW-GRID/PV_sizing), a registered student orgainization at the University of Washington.
