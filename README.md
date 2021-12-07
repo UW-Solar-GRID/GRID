@@ -12,3 +12,9 @@ The main objective of SolarSizer is to assist in the planning of residential sol
 
 How to install and run SolarSizer
 -------------------------------
+
+After cloning the repo to your local machine and navigating to the base SolarSizer directory, you will need to set up the environment for running the code. This may be done using the following line of code:
+`conda env create -f environment.yml`
+You will then need to activate the environment with `conda activate grid_ss`
+
+The interface will be created when you run the GUI file. To do so, enter `python GUI.py` into the command line. Copy the link provided in the output to navigate to the user interface.
