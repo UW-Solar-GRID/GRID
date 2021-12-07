@@ -45,7 +45,7 @@ def pysam_model():
             print('n', n)
             if m*n >=panel_number_estimate:  
                 print('m*n is greater than panel_number_estimate') 
-                z = run_pvmodel.execute_pvmodel(m,n,m)
+                z, our_load_profile = run_pvmodel.execute_pvmodel(m,n,m)
                 pvmodels_param.append([m, n, n])
                 pvmodels.append(z) 
                 print('z', z)
