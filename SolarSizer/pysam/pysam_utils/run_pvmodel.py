@@ -65,10 +65,12 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
         print(os.path.join(data_path, "user_load_profile.txt"))
     
     except:
-        our_load_profile = np.loadtxt(os.path.join(data_path, "Max_load_profile_for_year.txt"), skiprows=1)
+        # add exception
+        pass
+       # our_load_profile = np.loadtxt(os.path.join(data_path, "Max_load_profile_for_year.txt"), skiprows=1)
         
-        print('user load profile did not work. Using default load profile')
-        print(os.path.join(data_path, "Max_load_profile_for_year.txt"))
+       # print('user load profile did not work. Using default load profile')
+       # print(os.path.join(data_path, "Max_load_profile_for_year.txt"))
     
 
     
