@@ -59,7 +59,7 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     
     # try user load profile, if it does not work use default load profile 
     try:
-        our_load_profile = np.loadtxt(os.path.join(data_path, "user_load_profile.txt"), skiprows=1)
+        our_load_profile = np.loadtxt(os.path.join(data_path, "user_load_profile.txt"), skiprows=0)
         
         print('user load profile loaded')
         print(os.path.join(data_path, "user_load_profile.txt"))
@@ -167,4 +167,4 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     
     print('done executing the model')
     
-    return pvmodel
+    return pvmodel, our_load_profile
