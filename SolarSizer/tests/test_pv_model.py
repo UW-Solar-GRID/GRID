@@ -23,9 +23,7 @@ class TestPVModel(unittest.TestCase):
 #   1. We could do this with the above smoke test or create another set up where we know the output
 
 # Edge test: The code under test is invoked with arguments that should cause an exception, and you evaluate if the expected exception occurrs
-#   1. input a load profile that is way too high, still need to handle this case in psyam_model.py
-#   2. Lat,Lon over ocean? 
+#   1. Too many panels, 1-7 panels in string, 1-30 strings, 1-30 inverters 
 
 # Pattern test: Based on your knowledge of the *calculation* (not implementation) of the code under test, you construct a suite of test cases for which the results are known or there are known patterns in these results that are used to evaluate the results returned
-#   1. run the code twice, one load profile is larger than the other, compare outputs 
-#   2. same thing but with locations, choose one location that has much more irradiance 
+#   1. Run twice with different number of panels, array with more panels should have greater uptime percentage 
