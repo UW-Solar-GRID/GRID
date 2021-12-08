@@ -21,7 +21,6 @@ import pandas as pd
 import urllib.request
 import os
 
-from old import fake_SAM
 from pysam import pysam_model
 from utils import parse_load_profile as plp
 from utils import pull_irradiance
@@ -171,7 +170,10 @@ def update_output(lat, lon):
     if lat is not None and lon is not None:
         global_lat = lat
         global_lon = lon
-        #pull_irradiance.create_irradiance_file(lat,lon,2000)
+        print('global_lat', global_lat)
+        print('global_lon', global_lon)
+        
+        pull_irradiance.create_irradiance_file(lat,lon,2000) # may want to turn this off when testing because will max out request from API rate. Also might want to see about using average irradiance from NREL instead of from a set year.
 
     else:
         pass
@@ -204,8 +206,20 @@ def displayClick(btn1):
     if 'btn-nclicks-1' in changed_id:
         print('button clicked')
         msg = 'Button 1 was most recently clicked'
+        
         model_output = pysam_model.pysam_model()
         print(model_output)
+
+# Tried to write this so the button only calls the model when the inputs are entered but it doesn't work, will at some point replace call to model above
+#        print('global_lat', global_lat)
+#        print('global_lon', global_lon)
+#        print('global_list_of_contents', global_list_of_contents)
+#        if global_lat is not None and global_lon is not None and global_list_of_contents is not None:
+#            
+#            model_output = pysam_model.pysam_model()
+#            print(model_output)
+#        else:
+#            print('You need to input lat, lon, and a load profile first')
     else:
         msg = 'None of the buttons have been clicked yet'
     return html.Div(msg)
