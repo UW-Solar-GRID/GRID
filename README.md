@@ -14,11 +14,14 @@ The main objective of SolarSizer is to assist in the planning of small off-grid 
 
 ## How to install and run SolarSizer
 
-After cloning the repo to your local machine and navigating to the base SolarSizer directory, you will need to set up the environment for running the code. This may be done using the following line of code:
-`conda env create -f environment.yml`
-You will then need to activate the environment with `conda activate grid_ss`
+SolarSizer is set up using a conda environment to make sure the correct dependencies are installed. If you do not use conda you will need to make sure you have the packages listed in the environment.yml installed.
 
-The interface will be created when you run the GUI file. To do so, enter `python GUI.py` into the command line. Copy the link provided in the output to navigate to the user interface.
+1. Clone the repository to your local machine: https://github.com/UW-Solar-GRID/SolarSizer.git
+2. Naviate to the base SolarSizer directory: `cd SolarSizer`
+3. Set up the conda environment: `conda env create -f environment.yml`
+4. Activate the conda environment with: `conda activate grid_ss`
+5. Run the dashboard interface with: `python GUI.py` 
+6. Copy the locally hosted URL from the command line to navigate to the dashboard interface.
 
 ## Acknowledgements
 
