@@ -13,10 +13,16 @@ Utilities
 :Check that none of the values are NAN - might need to try this ourselves 
   
 3. Parse Load Profile 
-
-Pysam 
-1. Pysam_Model 
+:Remove this 
 
 Pysam Utils
 1. run_pvmodel 
+:check for no negative values and within limits 
+:does nrel have documentation on load limits?
+
+One shot: We could do this with the above smoke test or create another set up where we know the output
+
+Edge test: Too many panels, 1-7 panels in string, 1-30 strings, 1-30 inverters 
+
+Pattern test: Run twice with different number of panels, array with more panels should have greater uptime percentage 
 
