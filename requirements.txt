@@ -3,5 +3,5 @@ matplotlib
 nrel-pysam
 numpy
 pandas
-python=3.6
+python==3.6
 gunicorn==19.9.0
