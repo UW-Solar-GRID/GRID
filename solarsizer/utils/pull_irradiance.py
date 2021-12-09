@@ -38,6 +38,6 @@ def create_irradiance_file(lat, lon, year):
     # Declare url string
     url = 'https://developer.nrel.gov/api/solar/nsrdb_psm3_download.csv?wkt=POINT({lon}%20{lat})&names={year}&leap_day={leap}&interval={interval}&utc={utc}&full_name={name}&email={email}&affiliation={affiliation}&mailing_list={mailing_list}&reason={reason}&api_key={api}&attributes={attr}'.format(year=year, lat=lat, lon=lon, leap=leap_year, interval=interval, utc=utc, name=your_name, email=your_email, mailing_list=mailing_list, affiliation=your_affiliation, reason=reason_for_use, api=api_key, attr=attributes)
     
-    data_path = os.path.abspath('../SolarSizer/data')
+    data_path = os.path.abspath('../solarsizer/data')
     
     test = urllib.request.urlretrieve(url, data_path + '/irradiance.csv')
