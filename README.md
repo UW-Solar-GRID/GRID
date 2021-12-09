@@ -1,6 +1,6 @@
 # Welcome to SolarSizer
 
-<img src="doc/SolarSizerLogo.png" width="250" height="100" />
+<img src="doc/SolarSizerLogo.png" width="705.54" height="200" />
 
 Created by: Cassidy Quigley, Clayton Sasaki, Lindsey Taylor, Ning Wang
 
