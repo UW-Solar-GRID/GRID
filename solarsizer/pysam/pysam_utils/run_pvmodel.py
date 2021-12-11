@@ -1,26 +1,6 @@
 """
 PySAM submodule that runs the main pvmodel
 This module requires the irradiance data and user input txt file to be saved within the data directory
-
-The pvmodel works as follows:
-- Instantiate the model with default values
-- Specify the solar resource file for the location
-- Assign the load profile (defined above) to the the model. This will inform the model what kind of load our system will support
-- Pick module and inverter models - can design our own with specifications as needed but here we will pick from the available database
-- Identify the minimum and the maximum number of modules that can be in a string (*connected in series*). This is to make sure we are in the operating range for the inverter. The number of modules we select to be connected in a string must fall between these min and max values
-- Design the system :
-    - Set inverter count - *how many inverters do we want?*
-    - For a single subarray:
-        - Assign the number of modules in a string (*modules in series*)
-        - Assign the number of strings (*rows (in parallel)*)
-        - Fixed axis system or tracking (*tracking means it will track the sun throughout the day*)
-    - Repeat for desired number of subarrays
-- Specify Battery system specs: charge, discharge
-- Identify power dispatch from battery
-    - Manually control - specify when to charge and discharge the battery (*this makes more sense if you look at the UI in SAM*)
-- Execute the model!
-
-Refer to this link (https://sam.nrel.gov/images/webinar_files/sam-webinars-2020-modeling-pv-systems.pdf) for detailed explanation on MMPT, subarray, strings, etc
 """
 
 import os
