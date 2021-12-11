@@ -1,6 +1,6 @@
 ## Welcome to the data directory!
 
-There are two types of data within this directory:
+There are two categories of data within this directory:
 1. Load profiles
 2. Irradiance data
 
