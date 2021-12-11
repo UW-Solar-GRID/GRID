@@ -1,9 +1,8 @@
 """
 
-Creates GUI with functionality to input latitude and longitude.
+Creates GUI with functionality to input latitude, longitude, and a csv file.
 
-These user inputted values are run through a FakeSAM model that just
-multiplies them by two and then returns them as outputs in the GUI.
+These user inputted values are run through the PySAM model.
 
 """
 
