@@ -1,8 +1,27 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+PySAM submodule that runs the main pvmodel
+This module requires the irradiance data and user input txt file to be saved within the data directory
 
-# In[8]:
+The pvmodel works as follows:
+- Instantiate the model with default values
+- Specify the solar resource file for the location
+- Assign the load profile (defined above) to the the model. This will inform the model what kind of load our system will support
+- Pick module and inverter models - can design our own with specifications as needed but here we will pick from the available database
+- Identify the minimum and the maximum number of modules that can be in a string (*connected in series*). This is to make sure we are in the operating range for the inverter. The number of modules we select to be connected in a string must fall between these min and max values
+- Design the system :
+    - Set inverter count - *how many inverters do we want?*
+    - For a single subarray:
+        - Assign the number of modules in a string (*modules in series*)
+        - Assign the number of strings (*rows (in parallel)*)
+        - Fixed axis system or tracking (*tracking means it will track the sun throughout the day*)
+    - Repeat for desired number of subarrays
+- Specify Battery system specs: charge, discharge
+- Identify power dispatch from battery
+    - Manually control - specify when to charge and discharge the battery (*this makes more sense if you look at the UI in SAM*)
+- Execute the model!
 
+Refer to this link (https://sam.nrel.gov/images/webinar_files/sam-webinars-2020-modeling-pv-systems.pdf) for detailed explanation on MMPT, subarray, strings, etc
+"""
 
 import os
 import numpy as np
@@ -11,40 +30,19 @@ import PySAM.Pvsamv1 as pv
 import matplotlib.pyplot as plt
 import urllib.request
 
-
-# ## Load Profile
-# 
-# Getting our load profile
-
-
-
-# ## PV Model - "PVBatteryResidential"
-# 
-# `PVBatteryResidential` is one of the buit-in models in PySAM. We will use it for our analysis as it meets all of our basic requirements.
-# 
-# - Instantiate the model with default values
-# - Specify the solar resource file for the location
-# - Assign the load profile (defined above) to the the model. This will inform the model what kind of load our system will support
-# - Pick module and inverter models - can design our own with specifications as needed but here we will pick from the available database
-# - Identify the minimum and the maximum number of modules that can be in a string (*connected in series*). This is to make sure we are in the operating range for the inverter. The number of modules we select to be connected in a string must fall between these min and max values
-# - Design the system :
-#     - Set inverter count - *how many inverters do we want?*
-#     - For a single subarray:
-#         - Assign the number of modules in a string (*modules in series*)
-#         - Assign the number of strings (*rows (in parallel)*)
-#         - Fixed axis system or tracking (*tracking means it will track the sun throughout the day*)
-#     - Repeat for desired number of subarrays
-# - Specify Battery system specs: charge, discharge
-# - Identify power dispatch from battery
-#     - Manually control - specify when to charge and discharge the battery (*this makes more sense if you look at the UI in SAM*)
-# - Execute the model!
-
-# Refer [this link](https://sam.nrel.gov/images/webinar_files/sam-webinars-2020-modeling-pv-systems.pdf) for detailed explanation on MMPT, subarray, strings, etc
-
-# In[15]:
-
-
 def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters=4):
+    """
+    Function that executes the pvmodel
+    
+    Parameters:
+        number_of_modules_per_string (int):
+        number_of_strings (int):
+        m_inverters (int):
+        
+    Returns:
+        pvmodel (obj): 
+        our_load_profile (txt):The user input load profile used to execute the pvmodel
+    """
     
     data_path = os.path.abspath("../solarsizer/data")
     
@@ -72,8 +70,6 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
        # print('user load profile did not work. Using default load profile')
        # print(os.path.join(data_path, "Max_load_profile_for_year.txt"))
     
-
-    
     pvmodel.Load.load = tuple(our_load_profile)
     
     print('loaded load profile')
@@ -83,7 +79,6 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     
     pvmodel.Inverter.inverter_model = 0. # set it to CEC
     pvmodel.Inverter.inv_num_mppt = 1 # use single mmpts
-    
     
     ## Max number of modules in a string
     max_modules_in_string = pvmodel.Inverter.mppt_hi_inverter/pvmodel.CECPerformanceModelWithModuleDatabase.cec_v_oc_ref
