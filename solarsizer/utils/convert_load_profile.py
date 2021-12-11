@@ -1,3 +1,13 @@
+"""
+Module that contains function to convert GUI input file to a dataframe
+Saves the dataframe to a txt file within the data directory
+
+We assume the input file is csv format, though we include code for excel and txt inputs
+
+TO DO: Remove date input, remove df returns
+
+"""
+
 import base64
 import datetime
 import io
@@ -7,6 +17,20 @@ import pandas as pd
 import numpy as np
 
 def create_load_txt(contents, filename, date):
+    """
+    Load in GUI input file and returns a dataframe to be used in the PySAM model
+    The dataframe is saved to a txt file named 'user_load_profile.txt'
+    This txt file is saved within the data directory
+    
+    Parameters:
+        contents (list):A list containing the file contents
+        filename (str):Filename of the input data
+        date (str):Date of data contained within file
+        
+    Returns:
+        load_row_year (df):Dataframe containing the yearly load profile data
+    
+    """
     content_type, content_string = contents.split(',')
 
     lines = []
@@ -21,8 +45,8 @@ def create_load_txt(contents, filename, date):
         lines.pop(0)
         for i in range(len(lines)):
             nums.append(Decimal(lines[i]))
-            print(nums[i])
-        print(len(lines))
+      ##      print(nums[i])
+      ##  print(len(lines))
 
 
     elif 'csv' in filename:
@@ -50,7 +74,7 @@ def create_load_txt(contents, filename, date):
 
     load_row_year_kw = load_row_year/1000 # converts from watts to kW
     
-    print(load_row_year_kw.shape)
+    ##print(load_row_year_kw.shape)
     
     np.savetxt('data/user_load_profile.txt', load_row_year_kw, delimiter=' ')
 
