@@ -1,7 +1,25 @@
+"""
+Module to pull irradiance from database using an API
+Irradiance is retrieved from the ECMWF database
+
+Note: The API has limited uses per day. Please use sparingly.
+"""
+
 import urllib.request
 import os
 
 def create_irradiance_file(lat, lon, year):
+    """
+    Function that creates API and pulls irradiance data for given latitude, longitude, and year
+    The irradiance data as a csv file named 'irradiance.csv' within the data directory
+    This function has no returns
+    
+    Parameters:
+        lat (float):latitude input from GUI
+        lon (float):longitude input from GUI
+        year (int):Desired year of irradiance data
+    
+    """
 
     # Declare all variables as strings. Spaces must be replaced with '+', i.e., change 'John Smith' to 'John+Smith'.
     # Define the lat, long of the location and the year
@@ -31,9 +49,9 @@ def create_irradiance_file(lat, lon, year):
     # Please join our mailing list so we can keep you up-to-date on new developments.
     mailing_list = 'false'
 
-    print('lat', lat)
-    print('lon', lon)
-    print('year', year)
+    ##print('lat', lat)
+    ##print('lon', lon)
+    ##print('year', year)
 
     # Declare url string
     url = 'https://developer.nrel.gov/api/solar/nsrdb_psm3_download.csv?wkt=POINT({lon}%20{lat})&names={year}&leap_day={leap}&interval={interval}&utc={utc}&full_name={name}&email={email}&affiliation={affiliation}&mailing_list={mailing_list}&reason={reason}&api_key={api}&attributes={attr}'.format(year=year, lat=lat, lon=lon, leap=leap_year, interval=interval, utc=utc, name=your_name, email=your_email, mailing_list=mailing_list, affiliation=your_affiliation, reason=reason_for_use, api=api_key, attr=attributes)
