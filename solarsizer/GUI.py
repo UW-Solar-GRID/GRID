@@ -1,20 +1,14 @@
 """
 
 Creates GUI with functionality to input latitude, longitude, and a csv file.
-
 These user inputted values are run through the PySAM model.
 
+Run this app with `python app.py` and visit http://127.0.0.1:8050/ in your web browser.
 """
-
-# Run this app with `python app.py` and
-# visit http://127.0.0.1:8050/ in your web browser.
-
-#import datetime
 
 import dash
 from dash.dependencies import Input, Output, State
 from dash import callback_context, dcc, html
-#import plotly.express as px
 import pandas as pd
 
 import urllib.request
@@ -184,17 +178,9 @@ def update_output(lat, lon):
               State('upload-data', 'last_modified'))
 def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
     if list_of_contents is not None:
-        
         global_list_of_contents = list_of_contents
-#        children = [
-#            plp.parse_contents(c, n, d) for c, n, d in
-#            zip(list_of_contents, list_of_names, list_of_dates)]
-        
         [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
-        
-#        return children
-
 
 @app.callback(
     Output('container-button-timestamp', 'children'),
