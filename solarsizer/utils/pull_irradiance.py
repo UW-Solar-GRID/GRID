@@ -1,6 +1,6 @@
 """
 Module to pull irradiance from database using an API
-Irradiance is retrieved from the ECMWF database
+Irradiance is retrieved from the ECMWF database (add link)
 
 Note: The API has limited uses per day. Please use sparingly.
 """
