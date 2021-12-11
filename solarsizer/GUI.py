@@ -15,7 +15,7 @@ import urllib.request
 import os
 
 from pysam import pysam_model
-from utils import parse_load_profile as plp
+#from utils import parse_load_profile as plp
 from utils import pull_irradiance
 from utils import convert_load_profile
 
