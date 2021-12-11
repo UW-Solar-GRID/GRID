@@ -1,5 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
+"""
+Module that contains the PySAM model
+"""
 
 import os
 import numpy as np
@@ -10,6 +11,13 @@ import urllib.request
 from pysam.pysam_utils import run_pvmodel
 
 def pysam_model():
+    """
+    Function that runs PySAM
+    There are no input parameters, but ensure you have a txt load profile and an irradiance csv file within the data directory
+    
+    Returns:
+        df_system_array (df):Pandas dataframe that contains component information
+    """
     
     print('started running')
 
@@ -41,14 +49,14 @@ def pysam_model():
 
     for m in range(2,8): # m is no of modules
         for n in range(1,30): # n is no of strings
-            print('m', m)
-            print('n', n)
+            ##print('m', m)
+            ##print('n', n)
             if m*n >=panel_number_estimate:  
                 print('m*n is greater than panel_number_estimate') 
                 z, our_load_profile = run_pvmodel.execute_pvmodel(m,n,m)
                 pvmodels_param.append([m, n, n])
                 pvmodels.append(z) 
-                print('z', z)
+                ##print('z', z)
                 print('scenario ran')
                 
 #    if len(pvmodels) == 0:
