@@ -26,9 +26,6 @@ def create_load_txt(contents, filename, date):
         filename (str):Filename of the input data
         date (str):Date of data contained within file
 
-    Returns:
-        load_row_year (df):Dataframe containing the yearly load profile data
-
     """
     _, content_string = contents.split(',')
 
@@ -76,5 +73,3 @@ def create_load_txt(contents, filename, date):
     ##print(load_row_year_kw.shape)
 
     np.savetxt('data/user_load_profile.txt', load_row_year_kw, delimiter=' ')
-
-    return load_row_year
