@@ -9,6 +9,7 @@ Run this app with `python app.py` and visit http://127.0.0.1:8050/ in your web b
 import dash
 from dash.dependencies import Input, Output, State
 from dash import callback_context, dcc, html
+import dash_bootstrap_components as dbc
 import pandas as pd
 
 import urllib.request
@@ -23,51 +24,94 @@ global_lat = None
 global_lon = None
 global_list_of_contents = None
 
+
 app = dash.Dash(__name__)
 
-colors = {
-    'background': '#777777',
-    'text': '#7FDBFF'
-}
 
 
-app.layout = html.Div(style={'backgroundColor': colors['background']}, children=[
+app.layout = html.Div( children=[
     html.H1(
         children='Hello, welcome to solarGRID',
         style={
+            'width': '50%',
             'textAlign': 'center',
-            'color': colors['text']
+            'float': 'left',
+            'display': 'inline-block',
         }
     ),
 
-    html.Div(children='A web application for assisting with solar projects', style={
+     html.Img(
+        src='/assets/SolarSizerLogo.png',
+        style={
+            'width': '49%',
+            'height': '30vh', 
+            'float': 'right',
+            'display': 'inline-block',
+            },
+        ),
+
+    html.H2(
+        children='A web application for assisting with solar projects', 
+        style={
         'textAlign': 'center',
-        'color': colors['text']
-    }),
+        }
+    ),
 
     html.Br(),
 
-    html.Label('Enter latitude and longitude below:', style={'color': colors['text']
-
-    }),
-
-    html.Br(),
-
-    html.Br(),
-
-    html.Label('Latitude (in degrees):', style={'color': colors['text']
-
-    }),
-
-    dcc.Input(id='lat', type='number'),
-
-    html.Br(),
-
-    html.Label('Longitude (in degrees):', style={'color': colors['text']
-
-    }),
-
-    dcc.Input(id='lon', type='number'),
+    # input div
+    html.Div([
+        dbc.Card([
+            dbc.CardBody([
+                html.Div([
+                    html.Label('Enter latitude and longitude below:'),
+                    html.Br(),
+                    
+                    html.Label('Latitude (in degrees):'),
+                    dcc.Input(id='lat', type='number'),
+                    html.Br(),
+                    
+                    html.Label('Longitude (in degrees):'),
+                    dcc.Input(id='lon', type='number'),
+                ],
+                style={'width': '49%', 'display': 'inline-block'}
+                ),
+            
+                html.Div([
+                    dcc.Upload(
+                    id='upload-data',
+                    children=html.Div([
+                        'Drag and Drop or ',
+                        html.A('Select Files')
+                    ]),
+                    style={
+                        'width': '100%',
+                        'height': '60px',
+                        'lineHeight': '60px',
+                        'borderWidth': '1px',
+                        'borderStyle': 'dashed',
+                        'borderRadius': '5px',
+                        'textAlign': 'center',
+                        'margin': '10px'
+                    },
+                    # Allow multiple files to be uploaded
+                    multiple=True),],
+                style={'width': '49%', 'float': 'right', 'display': 'inline-block'}
+                ),
+            ])
+        ],
+        style={'display': 'inline-block',
+            'width': '49%',
+            'text-align': 'center',
+            'color':'black',
+            'background-color': 'thistle'},
+        outline=True),
+    ],
+    
+    style={
+        'padding': '10px 5px'
+    }
+    ),
 
     html.Br(),
 
@@ -75,80 +119,13 @@ app.layout = html.Div(style={'backgroundColor': colors['background']}, children=
 
     html.Div(id="output"),
     
-    dcc.Upload(
-        id='upload-data',
-        children=html.Div([
-            'Drag and Drop or ',
-            html.A('Select Files')
-        ]),
-        style={
-            'width': '100%',
-            'height': '60px',
-            'lineHeight': '60px',
-            'borderWidth': '1px',
-            'borderStyle': 'dashed',
-            'borderRadius': '5px',
-            'textAlign': 'center',
-            'margin': '10px'
-        },
-        # Allow multiple files to be uploaded
-        multiple=True
-    ),
+    
     html.Div(id='output-data-upload'),
     
     html.Button('Button 1', id='btn-nclicks-1', n_clicks=0),
 
     html.Div(id='container-button-timestamp')
-
-#    html.Label('Upload a load profile below:', style={'color': colors['text']
-#
-#    }),
-#
-#
-#    dcc.Upload(
-#        id='upload-csv',
-#        children=html.Div([
-#            'Drag and Drop or ',
-#            html.A('Select csv Files')
-#        ]),
-#        style={
-#            'width': '100%',
-#            'height': '60px',
-#            'lineHeight': '60px',
-#            'borderWidth': '1px',
-#            'borderStyle': 'dashed',
-#            'borderRadius': '5px',
-#            'textAlign': 'center',
-#            'margin': '10px'
-#        },
-#        # Allow multiple files to be uploaded
-#        multiple=True
-#    ),
-#    html.Div(id='output-csv-upload'),
 ])
-
-#def parse_contents(contents, filename, date):
-#    return html.Div([
-#        html.H5(filename),
-#        html.H6(datetime.datetime.fromtimestamp(date)),
-#        html.Hr(),
-#        html.Div('Raw Content'),
-#        html.Pre(contents[0:200] + '...', style={
-#            'whiteSpace': 'pre-wrap',
-#            'wordBreak': 'break-all'
-#        })
-#    ])
-#
-#@app.callback(Output('output-csv-upload', 'children'),
-#              Input('upload-csv', 'contents'),
-#              State('upload-csv', 'filename'),
-#              State('upload-csv', 'last_modified'))
-#def update_output(list_of_contents, list_of_names, list_of_dates):
-#    if list_of_contents is not None:
-#        children = [
-#            parse_contents(c, n, d) for c, n, d in
-#            zip(list_of_contents, list_of_names, list_of_dates)]
-#        return children
 
 
 @app.callback(Output('output', 'children'),
@@ -194,20 +171,9 @@ def displayClick(btn1):
         
         model_output = pysam_model.pysam_model()
         print(model_output)
-
-# Tried to write this so the button only calls the model when the inputs are entered but it doesn't work, will at some point replace call to model above
-#        print('global_lat', global_lat)
-#        print('global_lon', global_lon)
-#        print('global_list_of_contents', global_list_of_contents)
-#        if global_lat is not None and global_lon is not None and global_list_of_contents is not None:
-#            
-#            model_output = pysam_model.pysam_model()
-#            print(model_output)
-#        else:
-#            print('You need to input lat, lon, and a load profile first')
     else:
         msg = 'None of the buttons have been clicked yet'
     return html.Div(msg)
-                
+
 if __name__ == '__main__':
     app.run_server(debug=True)

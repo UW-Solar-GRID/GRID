@@ -25,8 +25,6 @@ def parse_contents(contents, filename, date):
                 nums.append(Decimal(lines[i]))
                 print(nums[i])
             print(len(lines))
-            
-
         elif 'csv' in filename:
             # Assume that the user uploaded a CSV file
             df = pd.read_csv(
