@@ -8,6 +8,7 @@ channels:
 
 dependencies:
   - dash=2.0
+  - dash-bootstrap-components
   - matplotlib
   - nrel-pysam
   - numpy
