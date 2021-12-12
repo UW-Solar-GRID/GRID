@@ -15,12 +15,12 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
     Function that executes the pvmodel
     
     Parameters:
-        number_of_modules_per_string (int):
-        number_of_strings (int):
-        m_inverters (int):
+        number_of_modules_per_string (int):Number of panels wired in series
+        number_of_strings (int):Number of strings wired in parallel 
+        n_inverters (int):Number of inverters
         
     Returns:
-        pvmodel (obj): 
+        pvmodel (obj):Represents solar array for current parameters 
         our_load_profile (txt):The user input load profile used to execute the pvmodel
     """
     
@@ -122,14 +122,6 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
 
     # MUST ENABLE Battery storage!!
     pvmodel.BatterySystem.en_batt = 1
-    
-#     pvmodel.BatterySystem.batt_computed_bank_capacity = batt_bank_capacity # kWh
-#     pvmodel.BatterySystem.batt_computed_series = 139
-#     pvmodel.BatterySystem.batt_computed_strings = 48
-#     pvmodel.BatterySystem.batt_power_charge_max_kwac = 10.417
-#     pvmodel.BatterySystem.batt_power_discharge_max_kwac = 9.6
-#     pvmodel.BatterySystem.batt_power_charge_max_kwdc = 9.982
-#     pvmodel.BatterySystem.batt_power_discharge_max_kwdc = 9.982
 
     # Battery Dispatch
     pvmodel.BatteryDispatch.batt_dispatch_choice = 4.0 # manual discharge
