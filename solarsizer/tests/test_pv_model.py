@@ -5,18 +5,16 @@ Module to test the pv model
 import numpy as np
 import unittest
 import sys
-sys.path.insert(0,"/Users/cassidyquigley/desktop/solarsizer/solarsizer/pysam")
                 
-from pysam.pysam_utils import pvmodel
+from solarsizer.pysam.pysam_utils import run_pvmodel
 
-print(sys.path)
 class TestPVModel(unittest.TestCase):
 
     def test_smoke(self):
         """
         Simple smoke test to make sure function runs.
         """
-        pvmodel.execute_pvmodel(5, 6, n_inverters=10)
+        run_pvmodel.execute_pvmodel(5, 6, n_inverters=10)
         return
       
 # One shot: In this case, you call the code under test with arguments for which you know the expected result
