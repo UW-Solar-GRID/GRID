@@ -23,6 +23,7 @@ from utils import convert_load_profile
 global_lat = None
 global_lon = None
 global_list_of_contents = None
+global_run_model = False
 
 app = dash.Dash(__name__)
 
@@ -124,9 +125,10 @@ app.layout = html.Div( children=[
     
     html.Div(id='output-data-upload'),
     
-    html.Button('Button 1', id='btn-nclicks-1', n_clicks=0),
+    html.Button('Run Model', id='btn-nclicks-1', n_clicks=0),
 
-    html.Div(id='container-button-timestamp'),
+    html.Div(id='model-status'),
+    
 ])
 
 
@@ -160,11 +162,13 @@ def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
         global_list_of_contents = list_of_contents
         [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
+    else:
+        pass
 
 
 # output is n*4cols data frame
 @app.callback(
-    Output('container-button-timestamp', 'children'),
+    Output('model-status', 'children'),
     Input('btn-nclicks-1', 'n_clicks')
 )
 def displayClick(btn1):
@@ -172,22 +176,29 @@ def displayClick(btn1):
     test_df = pd.DataFrame()
     if 'btn-nclicks-1' in changed_id:
         print('button clicked')
-        msg = 'Button 1 was most recently clicked'
         
         model_output = pysam_model.pysam_model()
         test_df = model_output
         print(model_output)
         print('test_df++++++++', test_df)
-    else:
-        msg = 'None of the buttons have been clicked yet'
-    if not test_df.empty:
-        return [html.Div([
+        
+        msg = 'Model running'
+        return html.Div(msg)
+    
+    elif not test_df.empty:
+        msg = 'Model finished running, result below:'
+        return [html.Div(msg), 
+            
+            html.Div([
                 dash_table.DataTable(
                     data=test_df.to_dict('records'),
                     columns=[{'name': i, 'id': i} for i in test_df.columns]
                 ),
-                html.Hr(),]),
+                html.Hr(),])
                 ]
+    else:
+        msg = 'Click button to run model once the lat and lon are inputted and a load profilee is uploaded as a .csv'
+        return html.Div(msg)
 
 if __name__ == '__main__':
     app.run_server(debug=True)
