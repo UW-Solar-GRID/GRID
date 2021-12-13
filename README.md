@@ -23,6 +23,17 @@ SolarSizer is set up using a conda environment to make sure the correct dependen
 5. Run the dashboard interface with: `python GUI.py` 
 6. Copy the locally hosted URL from the command line to navigate to the dashboard interface.
 
+## Contributions
+
+We would love contributions to make SolarSizer a more accurate and comprehensive solar array model. If you would like to expand SolarSizer, please fork the repository, add your contribution, and generate a pull request. 
+
+Some areas ripe for expansion: 
+1) The software currently takes in a single day of load profile data, it would be more useful for it to take in a years worth or some weekly or monthly variation. A simple start would be to allow a user to give a hourly txt file rather than the csv template.
+2) cost estimates given the suggested system specification. A simple way to do this would be to use the average or ragne of cost of the components.
+3) The software currenly pulls in irradiance data from The National Solar Radiation Database hosted by the National Renewable Energy Labratory using the Physical Solar Model (PSM) v3. In order to get csv files, data from only one year can be pulled. It would be better if another file type could be used (maybe json) and an average irradiance was calculated from multiple years.
+
+This project operates under the [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). A contributing guide for this project is under construction. 
+
 ## Acknowledgements
 
 This python package has been created for CSE 583 under the guidence of Professor David Beck and Anant Mittal from the University of Washington. This package also uses modeling code developed by [GRID](https://github.com/UW-GRID/PV_sizing), a registered student orgainization at the University of Washington.
