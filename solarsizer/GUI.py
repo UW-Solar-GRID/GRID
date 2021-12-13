@@ -8,7 +8,7 @@ Run this app with `python app.py` and visit http://127.0.0.1:8050/ in your web b
 
 import dash
 from dash.dependencies import Input, Output, State
-from dash import callback_context, dcc, html
+from dash import callback_context, dcc, html, dash_table
 import dash_bootstrap_components as dbc
 import pandas as pd
 
@@ -24,10 +24,7 @@ global_lat = None
 global_lon = None
 global_list_of_contents = None
 
-
 app = dash.Dash(__name__)
-
-
 
 app.layout = html.Div( children=[
     html.H1(
@@ -63,7 +60,8 @@ app.layout = html.Div( children=[
     html.Div([
         dbc.Card([
             dbc.CardBody([
-                html.Div([
+                dbc.Row([
+                    html.Div([
                     html.Label('Enter latitude and longitude below:'),
                     html.Br(),
                     
@@ -76,8 +74,10 @@ app.layout = html.Div( children=[
                 ],
                 style={'width': '49%', 'display': 'inline-block'}
                 ),
+                ]),
             
-                html.Div([
+                dbc.Row([
+                    html.Div([
                     dcc.Upload(
                     id='upload-data',
                     children=html.Div([
@@ -85,7 +85,7 @@ app.layout = html.Div( children=[
                         html.A('Select Files')
                     ]),
                     style={
-                        'width': '100%',
+                        'width': '90%',
                         'height': '60px',
                         'lineHeight': '60px',
                         'borderWidth': '1px',
@@ -96,7 +96,9 @@ app.layout = html.Div( children=[
                     },
                     # Allow multiple files to be uploaded
                     multiple=True),],
-                style={'width': '49%', 'float': 'right', 'display': 'inline-block'}
+                # style={'width': '49%', 'float': 'right', 'display': 'inline-block'}
+                ),], 
+                justify='center',
                 ),
             ])
         ],
@@ -124,7 +126,7 @@ app.layout = html.Div( children=[
     
     html.Button('Button 1', id='btn-nclicks-1', n_clicks=0),
 
-    html.Div(id='container-button-timestamp')
+    html.Div(id='container-button-timestamp'),
 ])
 
 
@@ -159,21 +161,33 @@ def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
         [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
             zip(list_of_contents, list_of_names, list_of_dates)]
 
+
+# output is n*4cols data frame
 @app.callback(
     Output('container-button-timestamp', 'children'),
     Input('btn-nclicks-1', 'n_clicks')
 )
 def displayClick(btn1):
     changed_id = [p['prop_id'] for p in callback_context.triggered][0]
+    test_df = pd.DataFrame()
     if 'btn-nclicks-1' in changed_id:
         print('button clicked')
         msg = 'Button 1 was most recently clicked'
         
         model_output = pysam_model.pysam_model()
+        test_df = model_output
         print(model_output)
+        print('test_df++++++++', test_df)
     else:
         msg = 'None of the buttons have been clicked yet'
-    return html.Div(msg)
+    if not test_df.empty:
+        return [html.Div([
+                dash_table.DataTable(
+                    data=test_df.to_dict('records'),
+                    columns=[{'name': i, 'id': i} for i in test_df.columns]
+                ),
+                html.Hr(),]),
+                ]
 
 if __name__ == '__main__':
     app.run_server(debug=True)

@@ -61,5 +61,6 @@ def create_irradiance_file(lat, lon, year):
 
     try: 
         _ = urllib.request.urlretrieve(url, data_path + '/irradiance.csv')
+        # add exception for multiple API call
     except:
         raise AssertionError('No irradiance data found for latitude and longintude')

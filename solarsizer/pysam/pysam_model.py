@@ -45,7 +45,6 @@ def pysam_model():
     Returns:
         df_system_array (df):Pandas dataframe that contains component information
     """
-
     print('started running')
 
     ## Running single scenario to get an estimate of the array size
@@ -79,6 +78,8 @@ def pysam_model():
 
     for mod in range(2,8): # mod is no of modules
         for no_str in range(1,30): # no_str is no of strings
+            # print('m', mod)
+            # print('n',no_str)
             if mod*no_str >=panel_number_estimate:
                 print('mod*no_str is greater than panel_number_estimate')
                 pvarray, our_load_profile = run_pvmodel.execute_pvmodel(mod,no_str,mod)
