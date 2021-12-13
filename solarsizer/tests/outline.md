@@ -22,7 +22,7 @@ Pysam Utils
 
 One shot: We could do this with the above smoke test or create another set up where we know the output
 
-Edge test: Too many panels, 1-7 panels in string, 1-30 strings, 1-30 inverters 
+Edge test: Too many panels (don't need because already has max of 7*30), 1-7 panels in string, 1-30 strings, 1-30 inverters 
 
 Pattern test: Run twice with different number of panels, array with more panels should have greater uptime percentage 
 
