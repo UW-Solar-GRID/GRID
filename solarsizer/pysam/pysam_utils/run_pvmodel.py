@@ -22,6 +22,12 @@ def execute_pvmodel(number_of_modules_per_string, number_of_strings, n_inverters
         our_load_profile (txt):The user input load profile used to execute the pvmodel
     """
 
+    if number_of_modules_per_string>7: 
+        raise AssertionError('Number of modules per string exceeds limit of 7')
+    if number_of_strings>30: 
+        raise AssertionError('Number of string exceeds limit of 30')
+    if n_inverters>number_of_strings:
+        raise AssertionError('Number of inverters exceeds number of strings')        	
     data_path = os.path.abspath("../solarsizer/data")
 
     # initialize model with defaults

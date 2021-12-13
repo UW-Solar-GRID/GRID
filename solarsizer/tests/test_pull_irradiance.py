@@ -15,7 +15,7 @@ class Testpullirradiance(unittest.TestCase):
         """
         Simple smoke test to make sure function runs.
         """
-        pull_irradiance.create_irradiance_file(30, -76, 2012)
+        pull_irradiance.create_irradiance_file(43, -122, 2012)
     def test_oneshot(self):
         """
         One shot test
