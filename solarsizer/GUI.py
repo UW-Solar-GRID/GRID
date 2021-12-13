@@ -72,18 +72,25 @@ app.layout = html.Div( children=[
                     
                     html.Label('Longitude (in degrees):'),
                     dcc.Input(id='lon', type='number'),
+                    html.Br(),
+                    html.Div('Note: chosen point must be in the United States', style={'color': 'gray', 'fontSize': 14}),
                 ],
                 style={'width': '49%', 'display': 'inline-block'}
                 ),
                 ]),
-            
+                
+                html.Br(),
+                
                 dbc.Row([
                     html.Div([
+                    html.Label('Upload a load profile:'),
+                    html.Br(),
+                        
                     dcc.Upload(
                     id='upload-data',
                     children=html.Div([
                         'Drag and Drop or ',
-                        html.A('Select Files')
+                        html.A('Select File')
                     ]),
                     style={
                         'width': '90%',
@@ -96,7 +103,9 @@ app.layout = html.Div( children=[
                         'margin': '10px'
                     },
                     # Allow multiple files to be uploaded
-                    multiple=True),],
+                    multiple=False),
+                    html.Div('Note: load profile must be in csv format, see template in data directory', style={'color': 'gray', 'fontSize': 14}),
+                    ],
                 # style={'width': '49%', 'float': 'right', 'display': 'inline-block'}
                 ),], 
                 justify='center',
