@@ -14,7 +14,11 @@ import pandas as pd
 
 import urllib.request
 import os
+import base64
+import io
 
+from decimal import Decimal
+import pandas as pd
 from pysam import pysam_model
 #from utils import parse_load_profile as plp
 from utils import pull_irradiance
@@ -169,8 +173,21 @@ def update_output(lat, lon):
 def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
     if list_of_contents is not None:
         global_list_of_contents = list_of_contents
-        [convert_load_profile.create_load_txt(c, n, d) for c, n, d in
-            zip(list_of_contents, list_of_names, list_of_dates)]
+        
+        # decode output from file upload
+        _, content_string = list_of_contents.split(',')
+
+        lines = []
+        nums = []
+        decoded = base64.b64decode(content_string)
+        
+        # check that type csv
+        
+        # finished decoding
+        data = pd.read_csv(io.StringIO(decoded.decode('utf-8')))
+        
+        # convert to txt
+        convert_load_profile.create_load_txt(data)
     else:
         pass
 

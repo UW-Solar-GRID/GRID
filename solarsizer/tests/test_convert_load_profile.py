@@ -24,12 +24,12 @@ class Testconvertloadprofile(unittest.TestCase):
         """
         convert_load_profile.create_load_txt(contents, filename, date)
         return
-    def test_file_type_not_csv(self):
+    def test_data_type(self):
         """
         Edge test to make sure the function throws an error
-        when the file is not a csv
+        when the data type in not floats or int
         """
-        contents = # need to make test data
+        contents = # give it string
         filename = 'load_profile_template.txt'
         date = '2021-12-01'
         
