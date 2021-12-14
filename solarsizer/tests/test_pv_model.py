@@ -6,7 +6,7 @@ import numpy as np
 import unittest
 import sys
                 
-from solarsizer.pysam.pysam_utils import run_pvmodel
+from pysam.pysam_utils import run_pvmodel
 
 class TestPVModel(unittest.TestCase):
 

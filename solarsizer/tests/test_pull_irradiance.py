@@ -7,7 +7,7 @@ import sys
 import numpy as np
 import unittest
                 
-from solarsizer.utils import pull_irradiance
+from utils import pull_irradiance
 
 class Testpullirradiance(unittest.TestCase):
 

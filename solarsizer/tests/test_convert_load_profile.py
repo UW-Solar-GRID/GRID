@@ -9,7 +9,7 @@ import unittest
 import numpy as np
 import pandas as pd
                 
-from solarsizer.utils import convert_load_profile
+from utils import convert_load_profile
 
 
 class Testconvertloadprofile(unittest.TestCase):
