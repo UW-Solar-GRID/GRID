@@ -172,25 +172,21 @@ def load_profile_update_output(contents, filename, last_modified):
     if contents is not None:
         global_contents = contents
         
-        print('contents', contents)
-        print(type(contents))
-        
         # decode output from file upload
         _, content_string = contents.split(',')
 
         decoded_b64 = base64.b64decode(content_string)
-        print('decoded_b64', decoded_b64)
-        print(type(decoded_b64)) 
         
         # check that type csv
         if filename.endswith('.csv'):
 
             decoded_csv = io.StringIO(decoded_b64.decode('utf-8'))
-            print('decoded_csv', decoded_csv)
-            print(type(decoded_csv))
+            
+            # convert to pandas dataframe
+            data = pd.read_csv(decoded_csv)
 
             # convert to txt
-            convert_load_profile.create_load_txt(decoded_csv, filename)
+            convert_load_profile.create_load_txt(data)
 
         else:
             raise TypeError('Load profile must be a csv file')

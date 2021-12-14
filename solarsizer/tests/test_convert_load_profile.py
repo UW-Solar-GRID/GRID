@@ -4,9 +4,10 @@ Module to test convert_load_profile
 
 import os
 import sys
+import unittest
 
 import numpy as np
-import unittest
+import pandas as pd
                 
 from solarsizer.utils import convert_load_profile
 
@@ -17,47 +18,45 @@ class Testconvertloadprofile(unittest.TestCase):
         """
         Simple smoke test to make sure function runs.
         """
-        convert_load_profile.create_load_txt(contents, filename, date)
+        data = pd.read_csv(r'test_data/load_profile_smoke.csv')
+        
+        convert_load_profile.create_load_txt(data)
     def test_oneshot(self):
         """
         One shot test
         """
-        convert_load_profile.create_load_txt(contents, filename, date)
-        return
-    def test_data_type(self):
+        data = pd.read_csv(r'test_data/load_profile_one_shot.csv')
+        
+        convert_load_profile.create_load_txt(data)
+        
+        # ADD CODE to compare txts created to correct txt
+    def test_wrong_len_load_row_day(self):
         """
         Edge test to make sure the function throws an error
-        when the data type in not floats or int
+        when load_row_day does not have a length of 24
         """
-        contents = # give it string
-        filename = 'load_profile_template.txt'
-        date = '2021-12-01'
-        
-        with self.assertRaises(TypeError):
-            convert_load_profile.create_load_txt(contents, filename, date)
-        return
-    def test_wrong_len_txt_created(self):
+        data = pd.read_csv(r'test_data/load_profile_too_many_hours.csv')
+
+        with self.assertRaises(ValueError):
+            convert_load_profile.create_load_txt(data)
+    def test_not_values_load_row_day(self):
         """
         Edge test to make sure the function throws an error
-        when the txt created is the wrong length
+        when load_row_day is not floats or ints
         """
-        contents = # need to make test data
-        filename = 'load_profile_template.csv'
-        date = '2021-12-01'
-        
+        data = pd.read_csv(r'test_data/load_profile_some_loads_are_strings.csv')
+
         with self.assertRaises(TypeError):
-            convert_load_profile.create_load_txt(contents, filename, date)
+            convert_load_profile.create_load_txt(data)
         return
-    def test_NaN_in_txt(self):
+    def test_NaN_in_load(self):
         """
         Edge test to make sure the function throws an error
-        when the txt created is the wrong length
+        when Nans are in the load profile
         """
-        contents = # need to make test data
-        filename = 'load_profile_template.csv'
-        date = '2021-12-01'
+        data = # need to make test data
         
-        with self.assertRaises(TypeError):
-            convert_load_profile.create_load_txt(contents, filename, date)
+        with self.assertRaises(ValueError):
+            convert_load_profile.create_load_txt(data)
         return
     
