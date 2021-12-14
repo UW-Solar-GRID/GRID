@@ -9,18 +9,23 @@ TO DO: Remove date input, remove df returns
 """
 
 import numpy as np
+import pandas as pd
 
-def create_load_txt(data):
+def create_load_txt(decoded_csv):
     """
-    Loads in decoded load profile from GUI (dataframe) and saves a txt file to be used in the PySAM model
-    The txt file contains the daily load profile repeated for a year and is named 'user_load_profile.txt'
-    This txt file is saved within the data directory
+    Loads in decoded load profile from GUI and converts to dataframe. Then gets the row with the hourly load
+    and saves as a txt file to be used in the PySAM model. The txt file contains the daily load profile repeated
+    for a year and is named 'user_load_profile.txt'. This txt file is saved within the data directory.
 
     Parameters:
-        data (dataframe):A dataframe containing the file contents
+        decoded_csv (io.StringIO object):An object containing the file contents
 
     """
 
+    # convert to pandas dataframe
+    data = pd.read_csv(decoded_csv)
+    print('data', data)
+    print(type(data))
 
     # get load row
     load_row_day = data.iloc[-2]
@@ -39,6 +44,6 @@ def create_load_txt(data):
 
     load_row_year_kw = load_row_year/1000 # converts from watts to kW
 
-    ##print(load_row_year_kw.shape)
 
     np.savetxt('data/user_load_profile.txt', load_row_year_kw, delimiter=' ')
+

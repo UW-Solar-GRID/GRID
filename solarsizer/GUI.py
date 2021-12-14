@@ -18,7 +18,6 @@ import base64
 import io
 
 from decimal import Decimal
-import pandas as pd
 from pysam import pysam_model
 #from utils import parse_load_profile as plp
 from utils import pull_irradiance
@@ -26,8 +25,7 @@ from utils import convert_load_profile
 
 global_lat = None
 global_lon = None
-global_list_of_contents = None
-global_run_model = False
+global_contents = None
 
 app = dash.Dash(__name__)
 
@@ -170,24 +168,33 @@ def update_output(lat, lon):
               Input('upload-data', 'contents'),
               State('upload-data', 'filename'),
               State('upload-data', 'last_modified'))
-def load_profile_update_output(list_of_contents, list_of_names, list_of_dates):
-    if list_of_contents is not None:
-        global_list_of_contents = list_of_contents
+def load_profile_update_output(contents, filename, last_modified):
+    if contents is not None:
+        global_contents = contents
+        
+        print('contents', contents)
+        print(type(contents))
         
         # decode output from file upload
-        _, content_string = list_of_contents.split(',')
+        _, content_string = contents.split(',')
 
-        lines = []
-        nums = []
-        decoded = base64.b64decode(content_string)
+        decoded_b64 = base64.b64decode(content_string)
+        print('decoded_b64', decoded_b64)
+        print(type(decoded_b64)) 
         
         # check that type csv
+        if filename.endswith('.csv'):
+
+            decoded_csv = io.StringIO(decoded_b64.decode('utf-8'))
+            print('decoded_csv', decoded_csv)
+            print(type(decoded_csv))
+
+            # convert to txt
+            convert_load_profile.create_load_txt(decoded_csv, filename)
+
+        else:
+            raise TypeError('Load profile must be a csv file')
         
-        # finished decoding
-        data = pd.read_csv(io.StringIO(decoded.decode('utf-8')))
-        
-        # convert to txt
-        convert_load_profile.create_load_txt(data)
     else:
         pass
 
