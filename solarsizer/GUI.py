@@ -30,101 +30,291 @@ global_contents = None
 app = dash.Dash(__name__)
 
 app.layout = html.Div( children=[
-    html.H1(
-        children='Hello, welcome to solarGRID',
-        style={
-            'width': '50%',
-            'textAlign': 'center',
-            'float': 'left',
-            'display': 'inline-block',
-        }
-    ),
-
-     html.Img(
-        src='/assets/SolarSizerLogo.png',
-        style={
-            'width': '49%',
-            'height': '30vh', 
-            'float': 'right',
-            'display': 'inline-block',
-            },
-        ),
-
-    html.H2(
-        children='A web application for assisting with solar projects', 
-        style={
-        'textAlign': 'center',
-        }
-    ),
-
-    html.Br(),
-
-    # input div
-    html.Div([
-        dbc.Card([
-            dbc.CardBody([
-                dbc.Row([
-                    html.Div([
-                    html.Label('Enter latitude and longitude below:'),
-                    html.Br(),
-                    
-                    html.Label('Latitude (in degrees):'),
-                    dcc.Input(id='lat', type='number'),
-                    html.Br(),
-                    
-                    html.Label('Longitude (in degrees):'),
-                    dcc.Input(id='lon', type='number'),
-                    html.Br(),
-                    html.Div('Note: chosen point must be in the United States', style={'color': 'gray', 'fontSize': 14}),
-                ],
-                style={'width': '49%', 'display': 'inline-block'}
-                ),
-                ]),
-                
-                html.Br(),
-                
-                dbc.Row([
-                    html.Div([
-                    html.Label('Upload a load profile:'),
-                    html.Br(),
-                        
-                    dcc.Upload(
-                    id='upload-data',
-                    children=html.Div([
-                        'Drag and Drop or ',
-                        html.A('Select File')
-                    ]),
-                    style={
-                        'width': '90%',
-                        'height': '60px',
-                        'lineHeight': '60px',
-                        'borderWidth': '1px',
-                        'borderStyle': 'dashed',
-                        'borderRadius': '5px',
-                        'textAlign': 'center',
-                        'margin': '10px'
-                    },
-                    # Allow multiple files to be uploaded
-                    multiple=False),
-                    html.Div('Note: load profile must be in csv format, see template in data directory', style={'color': 'gray', 'fontSize': 14}),
-                    ],
-                # style={'width': '49%', 'float': 'right', 'display': 'inline-block'}
-                ),], 
-                justify='center',
-                ),
-            ])
-        ],
-        style={'display': 'inline-block',
-            'width': '49%',
-            'text-align': 'center',
-            'color':'black',
-            'background-color': 'thistle'},
-        outline=True),
-    ],
     
+    #  Logo and Header
+    dbc.Row([
+        dbc.Col(
+            [html.Img(
+            src='/assets/SolarSizerLogo.png',
+            style={
+                'width': '25%',
+                'height': '13vh', 
+                'float': 'left',
+                'display': 'inline-block',
+                },
+            ),],
+            ),
+        dbc.Col([
+            dbc.Row(
+                [html.Div(
+                children='Solar Sizer',
+                style={
+                    'textAlign': 'left',
+                    'fontSize': 55,
+                }
+            ),],
+            ),
+            dbc.Row(
+                [html.Div(
+                children='A web application for planning off-grid solar projects', 
+                style={
+                    'textAlign': 'left',
+                    'fontSize': 24,
+                }
+                ),],
+                ),
+            ],
+            style={
+                'height': '25vh',
+                'width': '70%',
+                'float': 'right',
+                }),
+        ],
+            style={
+                'height': '16vh',
+            }
+        ),
+    
+    # Separate bar
+    dbc.Row(
+        style={
+            'height': '5vh',
+            'background-color': 'cornflowerblue'
+        }
+    ),
+    
+    # Main block
+    dbc.Row([
+        html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Br(),
+                html.Label('Try'),
+        
+        # Row for input and output
+        dbc.Row([
+            # Scrolling output, floating to the right
+            dbc.Col(
+                children=[
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Br(),
+                    html.Label('Try'),
+                    dbc.Row([html.Div(id='model-status')]),
+                    ],
+                style={
+                    'width': '64%',
+                    'height': '68vh',
+                    'float': 'right',
+                    'background-color': 'lightgreen',
+                    'overflow': 'scroll',
+                    'borderRadius': '3px',
+                    'padding-top': '20px',
+                    },
+            ),
+            
+            # Input card, floating to the left
+            dbc.Col([
+            dbc.Card([
+                dbc.CardBody([
+                    dbc.Row([
+                        html.Div([
+                        html.Div('Enter latitude and longitude below:', style={'fontSize': 24,}),
+                        html.Div('Note: chosen point must be in the United States', style={'color': 'gray', 'fontSize': 14, 'padding-bottom': '3px',}),
+                        
+                        html.Label('Latitude (in degrees):'),
+                        dcc.Input(id='lat', type='number'),
+                        html.Br(),
+                        
+                        html.Label('Longitude (in degrees):'),
+                        dcc.Input(id='lon', type='number'),
+                        html.Br(), 
+                    ],
+                    style={'width': '78%', 'display': 'inline-block'}
+                    ),
+                    ]),
+                    
+                    html.Br(),
+                    html.Br(),
+                    
+                    dbc.Row([
+                        html.Div('Upload a load profile:', style={'fontSize': 24,}),
+                        dbc.Row(
+                            [
+                                html.Center([
+                                    dbc.Row([html.Div('Note: load profile must be in csv format, see template in data directory', style={'color': 'gray', 'fontSize': 14}),]),
+                                    dcc.Upload(
+                                        id='upload-data',
+                                        children=[
+                                            html.Div(
+                                                ['Drag and Drop or Select File',], 
+                                                style={
+                                                    'vertical-align': 'top'
+                                                    },
+                                                )
+                                            ],
+                                        style={
+                                            'width': '80%',
+                                            'height': '60px',
+                                            'lineHeight': '60px',
+                                            'borderWidth': '2px',
+                                            'borderStyle': 'dashed',
+                                            'borderRadius': '5px',
+                                            'margin': '10px',
+                                            'vertical-align': 'top'
+                                        },
+                                        # Allow multiple files to be uploaded
+                                        multiple=False,
+                                    ),
+                                ])
+                            ]
+                        ),
+                        
+                        ], 
+                    style={
+                        'vertical-align': 'top'
+                        },
+                    justify='center',
+                    ),
+                    
+                    html.Br(),
+                    html.Br(),
+                    
+                    dbc.Row([
+                        html.Button('Run', id='btn-nclicks-1', n_clicks=0, 
+                                    style={
+                                        'width': '80%',
+                                        'height': '60px',
+                                        'borderWidth': '2px',
+                                        'borderRadius': '5px',
+                                        'textAlign': 'center',
+                                        'color': 'grey',
+                                    },
+                                    ),
+                    ],
+                    )
+                ],
+                style={
+                    'padding-top': '20px',
+                    'padding-right': '3px',
+                    'padding-bottom': '5px',
+                    'padding-left': '8px',
+                }
+                )
+            ],
+            style={
+                'display': 'inline-block',
+                'height': '54vh',
+                'width': '35%',
+                'float': 'left',
+                'text-align': 'center',
+                'color':'black',
+                'background-color': 'thistle',
+                'borderRadius': '3px',
+                },
+            ),
+        ],
+        
+        style={
+            'padding': '5px 5px',
+        }
+        ),
+        ],
+                
+        style={
+            'width': '100%',
+            'height': '70vh',
+            'overflow': 'scroll',
+            'background-color': 'yellow',
+        }
+        ),
+    ],
     style={
-        'padding': '10px 5px'
-    }
+            'width': '100%',
+            'height': '70vh',
+            'overflow': 'scroll',
+            'background-color': 'gray',
+        }        
+    
     ),
 
     html.Br(),
@@ -133,14 +323,15 @@ app.layout = html.Div( children=[
 
     html.Div(id="output"),
     
-    
     html.Div(id='output-data-upload'),
-    
-    html.Button('Run Model', id='btn-nclicks-1', n_clicks=0),
-
-    html.Div(id='model-status'),
-    
-])
+],
+style={
+    'padding-top': '30px',
+    'padding-right': '150px',
+    'padding-bottom': '10px',
+    'padding-left': '150px',
+}
+)
 
 
 @app.callback(Output('output', 'children'),
@@ -226,7 +417,8 @@ def displayClick(btn1):
                 html.Hr(),])
                 ]
     else:
-        msg = 'Click button to run model once the lat and lon are inputted and a load profilee is uploaded as a .csv'
+        msg = "placeholder"
+        # msg = 'Click button to run model once the lat and lon are inputted and a .csv load profile is uploaded'
         return html.Div(msg)
 
 if __name__ == '__main__':
