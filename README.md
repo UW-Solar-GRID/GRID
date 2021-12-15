@@ -30,7 +30,7 @@ We would love contributions to make SolarSizer a more accurate and comprehensive
 Some areas ripe for expansion: 
 1) The software currently takes in a single day of load profile data, it would be more useful for build load profiles that can vary by week, month, or year. A simple start would be to allow a user to give a hourly txt file rather than the csv template.
 2) Cost estimates given the suggested system specification. A simple way to do this would be to use the average or range of cost of the components.
-3) The software currenly pulls in irradiance data from The National Solar Radiation Database hosted by the National Renewable Energy Labratory using the Physical Solar Model (PSM) v3. In order to get csv files, data from only one year can be pulled. It would be better if another file type could be used (maybe json) and an average irradiance was calculated from multiple years.
+3) The software currenly pulls in irradiance data from The National Solar Radiation Database hosted by the National Renewable Energy Laboratory using the Physical Solar Model (PSM) v3. In order to get csv files, data from only one year can be pulled. It would be better if another file type could be used (maybe json) and an average irradiance was calculated from multiple years.
 
 This project operates under the [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). A contributing guide for this project is under construction. 
 
