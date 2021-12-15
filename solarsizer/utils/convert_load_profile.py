@@ -2,9 +2,7 @@
 Module that contains function to convert GUI input file to a dataframe
 Saves the dataframe to a txt file within the data directory
 
-We assume the input file is csv format, though we include code for excel and txt inputs
-
-TO DO: Remove date input, remove df returns
+We assume the input file is csv format
 
 """
 
