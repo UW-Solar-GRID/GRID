@@ -34,6 +34,19 @@ Some areas ripe for expansion:
 
 This project operates under the [Contributor Code of Conduct](https://www.contributor-covenant.org/version/1/0/0/code-of-conduct/). A contributing guide for this project is under construction. 
 
+## Additional Notes
+
+1) For future use a few files are in the main directory but are not used.
+
+- The files below are currently in the directory to deploy to Heroku; however the server is not set up.
+  - Procfile
+  - requirements.txt
+  - runtime.txt
+
+- Travis continous integration is not currently operational (can be set up later using the .travis.yml file)
+
+2) All code is PEP8 compliant (pylint scores > 8)
+
 ## Acknowledgements
 
 This python package has been created for CSE 583 under the guidence of Professor David Beck and Anant Mittal from the University of Washington. This package also uses modeling code developed by [GRID](https://github.com/UW-GRID/PV_sizing), a registered student orgainization at the University of Washington.
