@@ -18,14 +18,14 @@ class Testconvertloadprofile(unittest.TestCase):
         """
         Simple smoke test to make sure function runs.
         """
-        data = pd.read_csv(r'test_data/load_profile_smoke.csv')
+        data = pd.read_csv(r'tests/test_data/load_profile_smoke.csv')
         
         convert_load_profile.create_load_txt(data)
     def test_oneshot(self):
         """
         One shot test
         """
-        data = pd.read_csv(r'test_data/load_profile_one_shot.csv')
+        data = pd.read_csv(r'tests/test_data/load_profile_one_shot.csv')
         
         convert_load_profile.create_load_txt(data)
         
@@ -35,12 +35,11 @@ class Testconvertloadprofile(unittest.TestCase):
         Edge test to make sure the function throws an error
         when load_row_day does not have a length of 24
         """
-        data = pd.read_csv(r'test_data/load_profile_too_many_hours.csv')
+        data = pd.read_csv(r'tests/test_data/load_profile_too_many_hours.csv')
 
         with self.assertRaises(ValueError):
             convert_load_profile.create_load_txt(data)
-	return
-            
+        return
 """ 
 Additional tests to run on array load_row_day. These cannot be run right now as dtype comes in as object.
 Ideally dtype should match data type (e.g. float, int, str) so that data type can be checked. 
