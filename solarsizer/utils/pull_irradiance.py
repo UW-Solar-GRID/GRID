@@ -2,7 +2,8 @@
 Module to pull irradiance from database using an API
 Irradiance is retrieved from the ECMWF database (add link)
 
-Note: The API has limited uses per day. Please use sparingly.
+Note: The API has limited uses per day. If you have an API error,
+refresh the page and try again.
 """
 
 import urllib.request
