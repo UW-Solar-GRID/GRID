@@ -19,7 +19,8 @@ def create_irradiance_file(lat, lon, year):
         lon (float):longitude input from GUI
         year (int):Desired year of irradiance data
 
-    """ 
+    """
+
     # Declare all variables as strings. Spaces must be replaced with '+',
     #    i.e., change 'John Smith' to 'John+Smith'.
     # Define the lat, long of the location and the year
@@ -59,7 +60,7 @@ def create_irradiance_file(lat, lon, year):
 
     data_path = os.path.abspath('../solarsizer/data')
 
-    try: 
+    try:
         _ = urllib.request.urlretrieve(url, data_path + '/irradiance.csv')
         # add exception for multiple API call
     except:

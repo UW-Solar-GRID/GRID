@@ -2,33 +2,32 @@
 Module to test convert_load_profile
 """
 
-import os
-import sys
 import unittest
 
-import numpy as np
 import pandas as pd
-                
+
 from utils import convert_load_profile
 
-
 class Testconvertloadprofile(unittest.TestCase):
+    """
+    Testing the convert_load_profile.py module
+    """
 
     def test_smoke(self):
         """
         Simple smoke test to make sure function runs.
         """
         data = pd.read_csv(r'tests/test_data/load_profile_smoke.csv')
-        
+
         convert_load_profile.create_load_txt(data)
     def test_oneshot(self):
         """
         One shot test
         """
         data = pd.read_csv(r'tests/test_data/load_profile_one_shot.csv')
-        
+
         convert_load_profile.create_load_txt(data)
-        
+
         # ADD CODE to compare txts created to correct txt
     def test_wrong_len_load_row_day(self):
         """
@@ -39,13 +38,19 @@ class Testconvertloadprofile(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             convert_load_profile.create_load_txt(data)
-        return
-""" 
-Additional tests to run on array load_row_day. These cannot be run right now as dtype comes in as object.
-Ideally dtype should match data type (e.g. float, int, str) so that data type can be checked. 
-The pysam model takes in a load profile txt of values.
-See lines 36-45 and 51-53 of convert_load_profile.py for exceptions to pass these tests.
-"""
+
+
+# Additional tests to run on array load_row_day. These cannot
+#    be run right now as dtype comes in as object.
+#
+# Ideally dtype should match data type (e.g. float, int, str)
+#    so that data type can be checked.
+#
+# The pysam model takes in a load profile txt of values.
+#
+# See lines 36-45 and 51-53 of convert_load_profile.py for
+#    exceptions to pass these tests.
+#
 #    def test_not_values_load_row_day(self):
 #        """
 #        Edge test to make sure the function throws an error
@@ -62,8 +67,7 @@ See lines 36-45 and 51-53 of convert_load_profile.py for exceptions to pass thes
 #        when Nans are in the load profile
 #        """
 #        data = # need to make test data
-#        
+#
 #        with self.assertRaises(ValueError):
 #            convert_load_profile.create_load_txt(data)
 #        return
-    
