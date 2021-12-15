@@ -12,6 +12,7 @@ The main objective of SolarSizer is to assist in the planning of small off-grid 
 
 ![Example diagram](doc/solarsizer_flow.PNG)
 
+```
 ├── LICENSE
 ├── Procfile
 ├── README.md
@@ -35,7 +36,7 @@ The main objective of SolarSizer is to assist in the planning of small off-grid 
     └── utils
         ├── convert_load_profile.py
         └── pull_irradiance.py
-
+```
 ## How to install and run SolarSizer
 
 SolarSizer is set up using a conda environment to make sure the correct dependencies are installed. If you do not use conda you will need to make sure you have the packages listed in the environment.yml installed.
