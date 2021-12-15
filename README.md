@@ -20,7 +20,7 @@ SolarSizer is set up using a conda environment to make sure the correct dependen
 2. Naviate to the base SolarSizer directory: `cd SolarSizer`
 3. Set up the conda environment: `conda env create -f environment.yml`
 4. Activate the conda environment with: `conda activate grid_ss`
-5. Run the dashboard interface with: `python GUI.py` 
+5. Run the dashboard interface with: `python app.py` 
 6. Copy the locally hosted URL from the command line to navigate to the dashboard interface.
 
 ## Contributions
