@@ -248,7 +248,7 @@ app.layout = html.Div( children=[
                     dbc.Row([
                         html.Br(),
                         html.Div([
-                        html.Div('Enter latitude and longitude below:', style={'fontSize': 24,}),
+                        html.Div('Enter latitude and longitude:', style={'fontSize': 35,'width': '100%',}),
                         html.Div('Note: chosen point must be in the United States', style={'color': 'black', 'fontSize': 14, 'padding-bottom': '3px',}),
                         
                         html.Label('Latitude (in degrees):'),
@@ -261,7 +261,7 @@ app.layout = html.Div( children=[
                         html.Div(id=''),
                         html.Br(), 
                     ],
-                    style={'width': '86%', 'display': 'inline-block'}
+                    style={'width': '100%', 'display': 'inline-block'}
                     ),
                     ]),
                     
@@ -269,7 +269,7 @@ app.layout = html.Div( children=[
                     html.Br(),
                     
                     dbc.Row([
-                        html.Div('Upload a load profile:', style={'fontSize': 24,}),
+                        html.Div('Upload a load profile:', style={'fontSize': 35,}),
                         dbc.Row(
                             [
                                 html.Center([
@@ -280,13 +280,15 @@ app.layout = html.Div( children=[
                                             html.Div(
                                                 ['Drag and Drop or Select File',], 
                                                 style={
-                                                    'vertical-align': 'top'
+                                                    'vertical-align': 'top',
+                                                    'textAlign': 'center',
+                                                    'font-size': 25,
                                                     },
                                                 )
                                             ],
                                         style={
                                             'width': '80%',
-                                            'height': '60px',
+                                            'height': '80px',
                                             'lineHeight': '60px',
                                             'borderWidth': '2px',
                                             'borderStyle': 'dashed',
@@ -316,7 +318,7 @@ app.layout = html.Div( children=[
                                     style={
                                         'font-size': 30,
                                         'width': '80%',
-                                        'height': '60px',
+                                        'height': '80px',
                                         'borderWidth': '2px',
                                         'borderRadius': '20px',
                                         'textAlign': 'center',
@@ -324,6 +326,9 @@ app.layout = html.Div( children=[
                                     },
                                     ),
                     ],
+                        style={
+                            'padding-top': '35px',
+                        }
                     )
                 ],
                 style={
