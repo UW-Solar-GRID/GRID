@@ -1,6 +1,6 @@
 """
 PySAM submodule that runs the main pvmodel
-This module requires the irradiance data and user input txt
+This module requires the irradiance data and user input text
     file to be saved within the data directory
 """
 
