@@ -6,17 +6,20 @@ These user inputted values are run through the PySAM model.
 Run this app with `python app.py` and visit http://127.0.0.1:8050/ in your web browser.
 """
 
+import urllib.request
+import os
+import base64
+import io
+
 import dash
 from dash.dependencies import Input, Output, State
 from dash import callback_context, dcc, html, dash_table
 import dash_bootstrap_components as dbc
 import pandas as pd
 
-import urllib.request
-import os
-import base64
-import io
 import time
+import numpy as np
+import plotly.express as px
 
 from decimal import Decimal
 from pysam import pysam_model
@@ -462,9 +465,10 @@ def displayClick(btn1):
         print('button clicked')
         
         model_output = pysam_model.pysam_model()
+        
         test_df = model_output
-        print(model_output)
-        print('test_df++++++++', test_df)
+        
+        fig = px.bar(test_df, x=np.arange(0,test_df['Uptime_Percent'].shape[0]), y='Uptime_Percent')
     
     if not test_df.empty:
         msg = 'Model finished running, result below:'
@@ -477,7 +481,13 @@ def displayClick(btn1):
                     data=test_df.to_dict('records'),
                     columns=[{'name': i, 'id': i} for i in test_df.columns],
                 ),
-                html.Hr(),])
+                html.Hr(),
+                
+                dcc.Graph(
+                    id='example-graph',
+                    figure=fig
+                )
+            ])
                 ]
     # else:
     #     msg = "placeholder"
