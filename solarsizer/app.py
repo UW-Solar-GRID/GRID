@@ -99,7 +99,13 @@ app.layout = html.Div( children=[
                     }
             ),
                 html.Div([
-                    'The SolarSizer program assists in the planning of small off-grid solar projects by creating a user-friendly dashboard. Based on the input location and load profile, the model returns an equipment list of a solar array capable of meeting the load profile. SolarSizer applies a model designed by GRID yet with additional optimization and simplicity. The project also added documentation for testing and expanding the original code.'
+                    'The SolarSizer program assists in the planning of small off-grid solar '
+                    'projects by creating a user-friendly dashboard. Based on the input '
+                    'location and load profile, the model returns an equipment list of a solar '
+                    'array capable of meeting the load profile. SolarSizer applies a model '
+                    'designed by GRID yet with additional optimization and simplicity. '
+                    'The project also added documentation for testing and expanding the original '
+                    'code.'
                 ],
                 style={
                     'font-size': 20,
@@ -114,7 +120,14 @@ app.layout = html.Div( children=[
                 'font-weight': 'bold'
             }),
         html.Div([
-            html.Div(['The Global Renewables Infrastructure Development (GRID) is a student organization at University of Washington with the goal of researching and developing renewable energy technologies. The main focus of GRID is to help undersized, climate frontline communities by providing the resources to employ renewable energy techniques with optimal design. Projects are off-grid and small-scale, yet contribute to equitable green solutions to energy demands. For more information on GRID and ongoing projects, check out the official site at ',  html.A("sites.uw.edu/grid/", href='https://sites.uw.edu/grid/', target="_blank"),], ),
+            html.Div(['The Global Renewables Infrastructure Development (GRID) is a student '
+            'organization at University of Washington with the goal of researching and developing '
+            'renewable energy technologies. The main focus of GRID is to help undersized, climate '
+            'frontline communities by providing the resources to employ renewable energy '
+            'techniques with optimal design. Projects are off-grid and small-scale, yet '
+            'contribute to equitable green solutions to energy demands. For more information '
+            'on GRID and ongoing projects, check out the official site at ',
+            html.A("sites.uw.edu/grid/", href='https://sites.uw.edu/grid/', target="_blank"),], ),
         ],
                  style={
                     'font-size': 20,
@@ -162,7 +175,11 @@ app.layout = html.Div( children=[
                 'font-weight': 'bold'
                 }),
         html.Div([
-            'The input box can be found at the bottom of this page. After you submit a location and load profile, you can run the program. The software pulls in irradiance data from The National Solar Radiation Database hosted by the National Renewable Energy Laboratory using the Physical Solar Model (PSM) v3. See the next section for detailed instructions on how to get started.'
+            'The input box can be found at the bottom of this page. After you submit a location '
+            'and load profile, you can run the program. The software pulls in irradiance data '
+            'from The National Solar Radiation Database hosted by the National Renewable Energy '
+            'Laboratory using the Physical Solar Model (PSM) v3. See the next section for '
+            'detailed instructions on how to get started.'
         ],
                  style={
                     'font-size': 20,
@@ -177,19 +194,30 @@ app.layout = html.Div( children=[
                 'font-weight': 'bold'
                 }),
         html.Div([
-            'To run the program, first find the latitude and longitude in degrees of your desired location within the United States. The location must be within the US! You can use Google Maps to find the latitude and longitude of any location.'
+            'To run the program, first find the latitude and longitude in degrees of your desired '
+            'location within the United States. The location must be within the US! You can use '
+            'Google Maps to find the latitude and longitude of any location.'
         ],
                 style={'padding-bottom': '10px',
                        'font-size': 20,
                        }),
         html.Div([
-            'Next, upload your load profile by clicking the box labelled “Upload Load Profile”. Your load profile must be in csv format. We have provided a template of a load profile within the data directory in the SolarSizer github: ',
-            html.A("github.com/UW-Solar-GRID/SolarSizer/blob/main/doc/load_profile_template.csv", href='https://github.com/UW-Solar-GRID/SolarSizer/blob/main/doc/load_profile_template.csv', target="_blank"),
-            'You can refer to the load profile example within the data directory on how to fill out the template'
+            'Next, upload your load profile by clicking the box labelled '
+            '“Upload Load Profile”. Your load profile must be in csv format. '
+            'We have provided a template of a load profile within the data directory '
+            'in the SolarSizer github: ',
+            html.A("github.com/UW-Solar-GRID/SolarSizer/blob/main/doc/load_profile_template.csv",
+                href='https://github.com/UW-Solar-GRID/SolarSizer/blob/main/doc/'
+                'load_profile_template.csv',
+                target="_blank"),
+            'You can refer to the load profile example within the data directory on how to '
+            'fill out the template'
         ],
                 style={'padding-bottom': '10px', 'font-size': 20,}),
         html.Div([
-            'Once you have input your location and uploaded a load profile, press the RUN button to start the program. The solar array produced by the model will be displayed on the right. This contains the uptime percentage for each array specification.'
+            'Once you have input your location and uploaded a load profile, press the RUN button '
+            'to start the program. The solar array produced by the model will be displayed on '
+            'the right. This contains the uptime percentage for each array specification.'
         ],
                 style={'padding-bottom': '10px', 'font-size': 20,}),
             ],
@@ -247,8 +275,10 @@ app.layout = html.Div( children=[
                     dbc.Row([
                         html.Br(),
                         html.Div([
-                        html.Div('Enter latitude and longitude:', style={'fontSize': 35,'width': '100%',}),
-                        html.Div('Note: chosen point must be in the United States', style={'color': 'black', 'fontSize': 14, 'padding-bottom': '3px',}),
+                        html.Div('Enter latitude and longitude:',
+                            style={'fontSize': 35,'width': '100%',}),
+                        html.Div('Note: chosen point must be in the United States',
+                            style={'color': 'black', 'fontSize': 14, 'padding-bottom': '3px',}),
 
                         html.Label('Latitude (in degrees):'),
                         dcc.Input(id='lat', type='number'),
@@ -272,7 +302,9 @@ app.layout = html.Div( children=[
                         dbc.Row(
                             [
                                 html.Center([
-                                    dbc.Row([html.Div('Note: load profile must be in csv format, see template in data directory', style={'color': 'black', 'fontSize': 14}),]),
+                                    dbc.Row([html.Div('Note: load profile must be in csv format, '
+                                    'see template in data directory',
+                                    style={'color': 'black', 'fontSize': 14}),]),
                                     dcc.Upload(
                                         id='upload-data',
                                         children=[
@@ -411,7 +443,10 @@ def update_output(lat, lon):
         #print('global_lat', GLOBAL_LAT)
         #print('global_lon', GLOBAL_LON)
 
-        pull_irradiance.create_irradiance_file(lat,lon,2000) # may want to turn this off when testing because will max out request from API rate. Also might want to see about using average irradiance from NREL instead of from a set year.
+        pull_irradiance.create_irradiance_file(lat,lon,2000)
+        #may want to turn this off when testing because will max out request
+        #    from API rate. Also might want to see about using average irradiance
+        #    from NREL instead of from a set year.
 
     else:
         pass
@@ -459,6 +494,7 @@ def load_profile_update_output(contents, filename):
     Output('model-status', 'children'),
     Input('btn-nclicks-1', 'n_clicks')
 )
+
 def display_click():
     """
     Function to check if button has been clicked
@@ -474,14 +510,15 @@ def display_click():
         test_df = model_output
 
         fig = px.bar(
-            test_df, 
-            x=np.arange(0,test_df['Uptime_Percent'].shape[0]), 
+            test_df,
+            x=np.arange(0,test_df['Uptime_Percent'].shape[0]),
             y='Uptime_Percent',
             labels={
                      "x": "Array",
                      'Uptime_Percent': 'Uptime Percent'
                  },
             )
+        return None
 
     if not test_df.empty:
         msg = 'Model finished running, result below:'
@@ -502,6 +539,8 @@ def display_click():
                 )
             ])
                 ]
+
+    return None
     # else:
     #     msg = "placeholder"
     #     # msg = 'Click button to run model once the lat and lon are
