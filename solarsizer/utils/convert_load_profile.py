@@ -32,10 +32,6 @@ def create_load_txt(data):
 
     # drop peak and total load
     load_row_day = load_row_day[1:-1]
-    print('load_row_day', load_row_day)
-    print(type(load_row_day))
-    print(load_row_day.dtype) # TYPE SHOULD NOT BE OBJECT. NOT SURE HOW TO FIX
-    print(len(load_row_day))
     
     # raise type error is all values in array are not floats or ints. WHY ARE they objects right now:
 #    try:
@@ -52,7 +48,7 @@ def create_load_txt(data):
     if(len(load_row_day) != 24):
         raise ValueError('The load profile has the wrong number of load values. Please make sure you have load values for 24 hours')
     
-#    # raise value error is one or more nans are in array
+    # raise value error is one or more nans are in array
 #    if np.isnan(np.sum(load_row_day)) == True:
 #        raise ValueError('The load profile cannot contain nans')
     
