@@ -28,7 +28,7 @@ SolarSizer is set up using a conda environment to make sure the correct dependen
 We would love contributions to make SolarSizer a more accurate and comprehensive solar array model. If you would like to expand SolarSizer, please fork the repository, add your contribution, and generate a pull request. 
 
 Some areas ripe for expansion: 
-1) The software currently takes in a single day of load profile data, it would be more useful for build load profiles that can vary week, month, or year. A simple start would be to allow a user to give a hourly txt file rather than the csv template.
+1) The software currently takes in a single day of load profile data, it would be more useful for build load profiles that can vary by week, month, or year. A simple start would be to allow a user to give a hourly txt file rather than the csv template.
 2) Cost estimates given the suggested system specification. A simple way to do this would be to use the average or range of cost of the components.
 3) The software currenly pulls in irradiance data from The National Solar Radiation Database hosted by the National Renewable Energy Labratory using the Physical Solar Model (PSM) v3. In order to get csv files, data from only one year can be pulled. It would be better if another file type could be used (maybe json) and an average irradiance was calculated from multiple years.
 
