@@ -10,7 +10,7 @@ The main objective of SolarSizer is to assist in the planning of small off-grid 
 
 ## Structure
 
-![Example diagram](doc/SolarSizerFlowChart.png)
+![Example diagram](doc/solarsizer_flow.PNG)
 
 ## How to install and run SolarSizer
 
