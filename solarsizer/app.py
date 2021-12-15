@@ -471,10 +471,17 @@ def display_click():
         print('button clicked')
 
         model_output = pysam_model.pysam_model()
-
         test_df = model_output
 
-        fig = px.bar(test_df, x=np.arange(0,test_df['Uptime_Percent'].shape[0]), y='Uptime_Percent')
+        fig = px.bar(
+            test_df, 
+            x=np.arange(0,test_df['Uptime_Percent'].shape[0]), 
+            y='Uptime_Percent',
+            labels={
+                     "x": "Array",
+                     'Uptime_Percent': 'Uptime Percent'
+                 },
+            )
 
     if not test_df.empty:
         msg = 'Model finished running, result below:'
