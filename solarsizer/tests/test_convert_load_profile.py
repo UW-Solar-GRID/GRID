@@ -13,14 +13,17 @@ class Testconvertloadprofile(unittest.TestCase):
     Testing the convert_load_profile.py module
     """
 
-    def test_smoke(self):
+    @classmethod
+    def test_smoke(cls):
         """
         Simple smoke test to make sure function runs.
         """
         data = pd.read_csv(r'tests/test_data/load_profile_smoke.csv')
 
         convert_load_profile.create_load_txt(data)
-    def test_oneshot(self):
+
+    @classmethod
+    def test_oneshot(cls):
         """
         One shot test
         """
@@ -29,6 +32,7 @@ class Testconvertloadprofile(unittest.TestCase):
         convert_load_profile.create_load_txt(data)
 
         # ADD CODE to compare txts created to correct txt
+
     def test_wrong_len_load_row_day(self):
         """
         Edge test to make sure the function throws an error

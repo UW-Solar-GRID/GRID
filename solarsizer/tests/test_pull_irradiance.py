@@ -11,13 +11,15 @@ class Testpullirradiance(unittest.TestCase):
     Testing the pull_irradiance.py module
     """
 
-    def test_smoke(self):
+    @classmethod
+    def test_smoke(cls):
         """
         Simple smoke test to make sure function runs.
         """
         pull_irradiance.create_irradiance_file(43, -122, 2012)
 
-    def test_oneshot(self):
+    @classmethod
+    def test_oneshot(cls):
         """
         One shot test
         """

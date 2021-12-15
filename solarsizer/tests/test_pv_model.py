@@ -10,8 +10,8 @@ class TestPVModel(unittest.TestCase):
     """
     Running tests on the pv_model.py module
     """
-
-    def test_smoke(self):
+    @classmethod
+    def test_smoke(cls):
         """
         Simple smoke test to make sure function runs.
         """
