@@ -1,4 +1,4 @@
-# Welcome to SolarSizer
+# Welcome to SolarSizer, test
 
 <img src="doc/SolarSizerLogo.png" width="705.54" height="200" />
 
